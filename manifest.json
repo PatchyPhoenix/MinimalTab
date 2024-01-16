@@ -13,8 +13,14 @@
     "permissions":[
         "storage",
         "sidePanel",
-        "tabs"
+        "tabs",
+        "favicon"
     ],
+    "web_accessible_resources":[{
+        "resources":["_favicon/*"],
+        "matches": ["<all_urls>"],
+        "extension_ids":["*"]
+        }],
     "side_panel":{
         "default_path":"settings.html"
     },

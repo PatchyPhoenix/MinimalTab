@@ -30,15 +30,33 @@ function addShortcutsToBox() {
                 name.setAttribute("style","margin-top:1.5vw; font-family:FiraExtraLight;")
                 name.innerText = result[i]['name']
                 var image = document.createElement("img");
-                if(online)
-                    image.setAttribute('src',("https://s2.googleusercontent.com/s2/favicons?domain=" + result[i]['url']));
-                image.setAttribute('alt',"");
+                if(result[i]['icon'] != null || result[i]['icon'] != undefined) {
+                    image.setAttribute('src',result[i]['icon']);
+                    link.appendChild(image);
+                }
+                else {
+                    if(online) {
+                        const url = new URL(chrome.runtime.getURL("/_favicon/"))
+                        url.searchParams.set("pageUrl",result[i]['url']);
+                        url.searchParams.set("size","16");
+                        result[i]['icon'] = url.toString();
+                        image.setAttribute('src',result[i]['icon']);
+                        link.appendChild(image);
+                    }
+                    else {
+                        var icon = document.createElement("span");
+                        icon.setAttribute('class',"material-symbols-outlined");
+                        icon.setAttribute('style',"font-size:1.3vw;");
+                        icon.innerText = "globe";
+                        link.appendChild(icon);
+                    }
+                }
                 link.setAttribute("href",result[i]['url']);
                 link.setAttribute("class","button");
-                link.appendChild(image);
                 shortcut.appendChild(link);
                 shortcut.appendChild(name);
                 boxDiv.appendChild(shortcut);
+                chrome.storage.local.set({"shortcuts":result})
             } 
         else {
             var shortcut = document.createElement("div");
@@ -47,25 +65,39 @@ function addShortcutsToBox() {
             link.setAttribute("href","https://google.com");
             link.setAttribute("class","button");
             var name = document.createElement('div');
-            name.setAttribute("style","margin-top:1.5vw; font-family:FiraExtraLight;")
+            name.setAttribute("style","margin-top:1.5vw; font-family:FiraExtraLight;text-shadow:.2vw .2vw rgba(0,0,0,.8);")
             name.innerText = "Google"
-            if(online) {
-                var image = document.createElement("img");
-                image.setAttribute('src',("https://s2.googleusercontent.com/s2/favicons?domain=https://google.com"));
-                link.appendChild(image);   
+            
+            var image = document.createElement("img");
+            chrome.storage.local.get(["googleIcon"]).then((result) => {
+                if(result.googleIcon != null || result.googleIcon != undefined) {
+                    image.setAttribute('src', result.googleIcon)
+                    link.appendChild(image);
+                }
+                else {
+                    if(online) {
+                        const url = new URL(chrome.runtime.getURL("/_favicon/"))
+                        url.searchParams.set("pageUrl","https://www.google.com");
+                        url.searchParams.set("size","16")
+                        chrome.storage.local.set({"googleIcon":url.toString()})
+                    }
+
+                    else {
+                        var icon = document.createElement("span");
+                        icon.setAttribute('class',"material-symbols-outlined");
+                        icon.setAttribute('style',"font-size:1.3vw;");
+                        icon.innerText = "globe";
+                        link.appendChild(icon);
+                    }
+                }
+            });
             }
-            else {
-                var icon = document.createElement("span");
-                icon.setAttribute('class',"material-symbols-outlined");
-                icon.setAttribute('style',"font-size:1.3vw;");
-                icon.innerText = "globe" 
-                link.appendChild(icon);   
-            }
+            
             shortcut.appendChild(link);
             shortcut.appendChild(name);
             boxDiv.appendChild(shortcut);
         }
-    });
+    );
 }
 
 // deprecated

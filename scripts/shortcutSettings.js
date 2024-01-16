@@ -1,3 +1,12 @@
+var online = false; 
+window.addEventListener("online", function() {
+    online = true;
+})
+  
+window.addEventListener("offline", function() {
+    online = false;
+})
+
 function handleMissingData() {
     chrome.storage.local.get(["primaryClr"]).then((result) => { if (result.primaryClr == null || result.primaryClr == undefined) { chrome.storage.local.set({"primaryClr": "#BEBEBE"}); console.log("filling in the gaps - pclr") } })
     chrome.storage.local.get(["secondaryClr"]).then((result) => { if (result.secondaryClr == null || result.secondaryClr == undefined) { chrome.storage.local.set({"secondaryClr": "#BEBEBE"}); console.log("filling in the gaps - sclr") } })
@@ -27,7 +36,7 @@ chrome.storage.local.get(["shortcutDrawer"]).then((result) => {
     }
 });
 
-
+// set up the list of shortcuts in the shortcut settings menu
 chrome.storage.local.get(["shortcuts"]).then((result) => { 
     shortcuts = result.shortcuts;
     noOfShortcuts = shortcuts.length;
@@ -80,8 +89,13 @@ document.getElementById("applyBtS").addEventListener('click', function()
         for(let i = 0;i<result.length;i++) {
             let shortcut = document.getElementById("shortcutItem"+i).value;
             let shortcutName = document.getElementById("shortcutItemName"+i).value;
-            if(result[i]['url'] != shortcut) 
+            if(result[i]['url'] != shortcut) {
                 result[i]['url'] = shortcut;
+                var icon = new URL(chrome.runtime.getURL("/_favicon/"))
+                icon.searchParams.set("pageUrl",result[i]['url']);
+                icon.searchParams.set("size","16")
+                result[i]['icon'] = icon.toString();
+            }
             if(result[i]['name'] != shortcutName)
                 result[i]['name'] = shortcutName;
         }
@@ -93,8 +107,15 @@ document.getElementById("applyBtS").addEventListener('click', function()
 function addShortcutAddr() {
     var name = (document.getElementById("shortcutName").value);
     var address = (document.getElementById("shortcutAddr").value).toLowerCase();
+    var icon = null;
+    if(online) {
+        icon = new URL(chrome.runtime.getURL("/_favicon/"))
+        icon.searchParams.set("domainUrl",address);
+        icon.searchParams.set("size","16")
+        icon = icon.toString()
+    }
     if(isUrlValid(address) == true)
-        chrome.storage.local.get(["shortcuts"]).then((result) => { result = result.shortcuts; var shortcut = {'name':name,'url':address} ;result.push(shortcut); chrome.storage.local.set({"shortcuts":result})});
+        chrome.storage.local.get(["shortcuts"]).then((result) => { result = result.shortcuts; var shortcut = {'name':name,'url':address,'icon':icon} ;result.push(shortcut); chrome.storage.local.set({"shortcuts":result})});
     else
         var textField = document.getElementById("shortcutAddr");
         textField.value = "";
