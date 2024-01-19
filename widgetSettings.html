@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+    <link rel="stylesheet" href="style/settings.css">
+    <script src="scripts/ajax.js"></script>
+    <title>Widgets</title>
+</head>
+<body style="overflow-y: auto;">
+    <div class="settingsPopup">
+        <section class="titleText" style="margin-bottom: 5vw;">Widgets</section>
+        <label style="font-size: 16px;" class="text">Weather</label>
+        <input id="weatherStatus" type="checkbox"></input><br>
+        <div style="text-align: center;">
+            <div id="weatherSettings" class="text" style="font-size:3vw;">
+            </div><br>
+        </div>
+        <div style="text-align: center;">
+            <button class="longButton" id="applyBtW">Apply</button>
+            <a style="border-radius: 10px; width: 300px; user-select: none;" href="settings.html"><button class="longButton" id="backBtS">Back</button></a>
+        </div>
+    </div>
+    <script type="module" src="scripts/widgetsSettings.js"></script>
+</body>
+</html>

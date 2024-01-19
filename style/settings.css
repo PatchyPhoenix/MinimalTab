@@ -286,3 +286,21 @@ input[type="color"]::-webkit-color-swatch {
 ::-webkit-scrollbar-thumb:hover {
     background: #202020;
 }
+
+#location {
+    font-family: 'FiraLight';
+    padding-left:3vw;
+    padding-right:3vw;
+    color:#aeaeae;
+    height: 6vh;
+    width: 50vw;
+    border:none;
+    border-radius: 10px 0px 0px 10px;
+    background-color: rgba(255, 255, 255, 0.14);
+    margin-right: 0;
+}
+
+#location:focus {
+    outline:none;
+    box-shadow: none;
+}
