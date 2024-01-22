@@ -67,6 +67,7 @@ body{
     white-space: nowrap;
     word-wrap: normal;
     direction: ltr;
+    font-feature-settings: 'liga';
     -webkit-font-feature-settings: 'liga';
     -webkit-font-smoothing: antialiased;
 }
@@ -181,9 +182,4 @@ img{
 
 #settings:hover {
     background: rgba(100, 100, 100, 0.14);
-}
-
-#weatherIcon {
-    
-    
 }
