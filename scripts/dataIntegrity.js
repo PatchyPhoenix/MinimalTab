@@ -46,4 +46,4 @@ function sleep(milliseconds) {
 }
 
 handleMissingData();
-setInterval(handleMissingData, 100)
+setInterval(handleMissingData, 300)

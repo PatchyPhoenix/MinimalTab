@@ -178,7 +178,7 @@ function handleSitesBar() {
         if (flag == 0) {
             if(boxPos < 105) {
                 document.getElementById("box").style.transform = "translatey("+boxPos+"%)";
-                boxPos += boxPos * 10 / 100;
+                boxPos += boxPos * 20 / 100;
             }
             if(boxPos <= 80 && flagS == 1)
                 flagS = 0;
@@ -188,8 +188,8 @@ function handleSitesBar() {
     function openBar () {
         if (flag == 1 && boxPos > 1) {
             document.getElementById("box").style.transform = "translatey("+boxPos+"%)";
-            boxPos -= boxPos * 10 / 100;
-            if(boxPos <= 1){
+            boxPos -= boxPos * 20 / 100;
+            if(flagS != 1 && boxPos >= 1){
                 addShortcutsToBox();
                 flagS = 1;
             }
@@ -201,4 +201,4 @@ function handleSitesBar() {
 }
 
 addShortcutsToBox();
-setInterval(handleSitesBar,1);
+setInterval(handleSitesBar,10);

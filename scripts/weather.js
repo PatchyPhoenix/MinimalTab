@@ -106,6 +106,7 @@ function fetchWeatherData() {
                 city.innerHTML = response.condition.location.name
                 city.setAttribute("style","font-size:.7vw;")
                 icon.setAttribute("class","material-symbols-outlined")
+                icon.setAttribute("id","weatherIcon")
                 icon.setAttribute("style","font-size:3vw;")
                 icon.innerText = getIcon(response.condition.current.condition.code)
                 stats.innerHTML = ""
@@ -122,7 +123,8 @@ function fetchWeatherData() {
     });
 }
 
-setInterval(fetchWeatherData, 10);
+fetchWeatherData()
+setInterval(fetchWeatherData, 1000);
 
 function getIcon(conditionCode) {
     switch(conditionCode) {

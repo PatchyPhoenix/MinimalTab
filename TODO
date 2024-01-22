@@ -1,3 +1,2 @@
-complete weather widget -> modify data structure (move 'lastUpdatedWeather' & 'weather' to 'widgets'), update url dynamically, update weather conditions after modifying the location
 add more customization options
 fix bugs

@@ -1,4 +1,5 @@
-function handleMissingData() {
+// deprecated
+/*function handleMissingData() {
     chrome.storage.local.get(["primaryClr"]).then((result) => { 
         if (result.primaryClr == null || result.primaryClr == undefined) { 
             chrome.storage.local.set({"primaryClr": "#BEBEBE"}); 
@@ -43,7 +44,7 @@ function handleMissingData() {
         chrome.sidePanel.setOptions({"enabled":true})
     else 
         chrome.sidePanel.setOptions({"enabled":false}) });
-}*/
+}
 //setInterval(listenToTab, 1);
 
 setInterval(handleMissingData, 10);
@@ -51,3 +52,4 @@ setInterval(handleMissingData, 10);
 const keepAlive = () => setInterval(chrome.runtime.getPlatformInfo, 20e3);
 chrome.runtime.onStartup.addListener(keepAlive);
 keepAlive();
+*/
