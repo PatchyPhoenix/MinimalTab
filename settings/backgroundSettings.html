@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+    <link rel="stylesheet" href="/style/settings.css">
+    <script defer src="/scripts/dataIntegrity.js"></script>
+    <title>Background</title>
+</head>
+<body style="overflow-y: auto;">
+    <div class="settingsPopup">
+        <section class="titleText" style="margin-bottom: 5vw;">Background</section>
+        <label style="font-size: 16px;" class="text">Image</label><br>
+        <input id="bgImgSelector" type="file" accept="image/png, image/gif, image/jpeg"><br><br>
+        <label style="font-size: 16px;" class="text">Colour</label><br>
+        <input id="clr" type="color"><br>
+        <div style="text-align: center;">
+        <button class="longButton" id="applyBtBc">Apply</button><br>
+            <a style="border-radius: 10px; width: 50vw; user-select: none;" href="index.html"><button class="longButton">Back</button></a>
+        </div>
+    </div>
+    <script type="module" src="/scripts/backgroundSettings.js"></script>
+</body>
+</html>

@@ -1,5 +1,5 @@
 :root{
-    --primaryClr:#aeaeae;
+    --primaryClr:#BABABA;
     --secondaryClr:#303030;
 }
 
@@ -64,12 +64,8 @@ body{
 }
 
 .titleText{
-    background: -webkit-linear-gradient(#aeaeae, #303030);
-    background-clip: text;
-    -webkit-background-clip:text;
-    -webkit-text-fill-color: transparent;
     font-size: 10vw;
-    color: rgb(168, 168, 168);
+    color: #BEBEBE;
     font-family: "FiraSemiBold";
 }
 
@@ -82,7 +78,7 @@ body{
 .text{
     font-family: 'FiraRegular';
     font-size: 5vw;
-    color:rgb(103, 103, 103);
+    color:#BABABA;
     margin: 0;
 }
 
@@ -124,7 +120,7 @@ input[type="color"]::-webkit-color-swatch {
     display: inline-block;
     padding-left:3vw;
     padding-right:3vw;
-    color:#aeaeae;
+    color:#BABABA;
     height: 6vh;
     width: 50vw;
     border:none;
@@ -142,7 +138,7 @@ input[type="color"]::-webkit-color-swatch {
     font-family: 'FiraLight';
     padding-left:3vw;
     padding-right:3vw;
-    color:#aeaeae;
+    color:#BABABA;
     height: 6vh;
     width: 50vw;
     border:none;
@@ -171,7 +167,7 @@ input[type="color"]::-webkit-color-swatch {
     align-self: center;
     height: 6vh;
     width: 50vw;
-    color: #aeaeae;
+    color: #BABABA;
     text-decoration: none;
     border-radius: 10px;
     margin: 2vw;
@@ -195,7 +191,7 @@ input[type="color"]::-webkit-color-swatch {
     height: 6vh;
     width: 6vh;
     padding: .6vh;
-    color: #aeaeae;
+    color: #BABABA;
     text-decoration: none;
     border-radius: 10px;
     margin: 2vw;
@@ -215,7 +211,7 @@ input[type="color"]::-webkit-color-swatch {
     font-family: 'FiraLight';
     padding-left:3vw;
     padding-right:3vw;
-    color:#aeaeae;
+    color:#BABABA;
     height: 6vh;
     width: 47vw;
     border:none;
@@ -230,7 +226,7 @@ input[type="color"]::-webkit-color-swatch {
     font-family: 'FiraLight';
     border-radius: 10px;
     height: 6vh;
-    color: #aeaeae;
+    color: #BABABA;
     text-decoration: none;
     margin:0;
     background: rgba(255, 255, 255, 0.14);
@@ -291,7 +287,7 @@ input[type="color"]::-webkit-color-swatch {
     font-family: 'FiraLight';
     padding-left:3vw;
     padding-right:3vw;
-    color:#aeaeae;
+    color:#BABABA;
     height: 6vh;
     width: 50vw;
     border:none;

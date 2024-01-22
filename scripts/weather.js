@@ -15,117 +15,6 @@ var params = {
     "Access-Control-Allow-Headers": "Content-Type, Depth, User-Agent, X-File-Size, X-Requested-With, If-Modified-Since, X-File-Name, Cache-Control"}
 };
 
-
-function fetchWeatherData() {
-    var dat = new Date();
-    chrome.storage.local.get(['widgets']).then((response) => {
-        response = response.widgets.weather
-        if(response.condition == {} || response.condition == null || response.condition == undefined) {
-            if(online) {
-                if(response.location != null || response.location != undefined) {
-                    var url='https://api.weatherapi.com/v1/current.json?key=2907bc91fdf24cf583d115833230612&q='+ response.location +'&aqi=no';
-                    fetch(url, params).then((request) => {
-                        request.json().then((request) => { 
-                            response['condition'] = request
-                            response['lastUpdatedWeather'] = dat.getTime()
-                            chrome.storage.local.set({"widgets":{'weather':response}})
-                        })
-                    })
-                    console.log("Updated weather")
-                }
-                else { 
-                    $.get('https://www.cloudflare.com/cdn-cgi/trace', function(data) {
-                        data = data.trim().split('\n').reduce(function(obj, pair) {
-                        pair = pair.split('=');
-                        return obj[pair[0]] = pair[1], obj;
-                        }, {});
-                        var url='https://api.weatherapi.com/v1/current.json?key=2907bc91fdf24cf583d115833230612&q='+ data.ip +'&aqi=no';
-                        fetch(url, params).then((request) => {
-                            request.json().then((request) => { 
-                                response['condition'] = request
-                                response['lastUpdatedWeather'] = dat.getTime()
-                                chrome.storage.local.set({"widgets":{'weather':response}})
-                            })
-                        })
-                        console.log("Updated weather")
-                    });
-                }
-            }
-            else {
-                response['condition'] = {"current":{"temp_c":"--","condition":{"code":404}}}
-                chrome.storage.local.set({"widgets":{"weather":response}}) 
-            }
-        }
-        else {
-            if(((dat.getTime() - response.lastUpdatedWeather) >= 3600000 || response.lastUpdatedWeather == null || response.lastUpdatedWeather == undefined) || ((response.location != response.condition.location.name) )) {
-                if(online) {
-                    if(response.location != null || response.location != undefined) {
-                        var url='https://api.weatherapi.com/v1/current.json?key=2907bc91fdf24cf583d115833230612&q='+ response.location +'&aqi=no';
-                        fetch(url, params).then((request) => {
-                            request.json().then((request) => { 
-                                response['condition'] = request
-                                response['lastUpdatedWeather'] = dat.getTime()
-                                response['location'] = response.condition.location.name
-                                chrome.storage.local.set({"widgets":{'weather':response}})
-                            })
-                        })
-                        console.log("Updated weather")
-                    }
-                    else { 
-                        $.get('https://www.cloudflare.com/cdn-cgi/trace', function(data) {
-                            data = data.trim().split('\n').reduce(function(obj, pair) {
-                            pair = pair.split('=');
-                            return obj[pair[0]] = pair[1], obj;
-                            }, {});
-                            var url='https://api.weatherapi.com/v1/current.json?key=2907bc91fdf24cf583d115833230612&q='+ data.ip +'&aqi=no';
-                            fetch(url, params).then((request) => {
-                                request.json().then((request) => { 
-                                    response['condition'] = request
-                                    response['lastUpdatedWeather'] = dat.getTime()
-                                    response['location'] = response.condition.location.name
-                                    chrome.storage.local.set({"widgets":{'weather':response}})
-                                })
-                            })
-                            console.log("Updated weather")
-                        });
-                    }
-                }
-                else {
-                    response['condition'] = {"current":{"temp_c":"--","condition":{"code":404}}}
-                    chrome.storage.local.set({"widgets":{"weather":response}}) 
-                }
-            }
-        }
-        if(response.status) {
-            try {
-                var stats = document.getElementById("weatherStats")
-                var icon = document.createElement("span")
-                var text = document.createElement("div")
-                var city = document.createElement("div")
-                text.innerHTML = response.condition.current.temp_c + "°C"
-                city.innerHTML = response.condition.location.name
-                city.setAttribute("style","font-size:.7vw;")
-                icon.setAttribute("class","material-symbols-outlined")
-                icon.setAttribute("id","weatherIcon")
-                icon.setAttribute("style","font-size:3vw;")
-                icon.innerText = getIcon(response.condition.current.condition.code)
-                stats.innerHTML = ""
-                stats.appendChild(icon)
-                stats.appendChild(text)
-                stats.appendChild(city)
-            }
-            catch(e) { console.log("Hold on") }
-        }
-        else {
-            var stats = document.getElementById("weatherStats")
-            stats.innerHTML = ""
-        }
-    });
-}
-
-fetchWeatherData()
-setInterval(fetchWeatherData, 1000);
-
 function getIcon(conditionCode) {
     switch(conditionCode) {
         case 1000: return "clear_day"; // clear_day
@@ -179,3 +68,114 @@ function getIcon(conditionCode) {
         default: return "cloud_off";
     }
 }
+
+
+function fetchWeatherData() {
+    var dat = new Date();
+    chrome.storage.local.get(['widgets']).then((response) => {
+        response = response.widgets.weather
+        if(response.condition == {} || response.condition == null || response.condition == undefined) {
+            if(online) {
+                if(response.location != null || response.location != undefined) {
+                    var url='https://api.weatherapi.com/v1/current.json?key=2907bc91fdf24cf583d115833230612&q='+ response.location +'&aqi=no';
+                    fetch(url, params).then((request) => {
+                        request.json().then((request) => { 
+                            response['condition'] = request
+                            response['lastUpdatedWeather'] = dat.getTime()
+                            chrome.storage.local.set({"widgets":{'weather':response}})
+                        })
+                    })
+                    //console.log("Updated weather")
+                }
+                else { 
+                    $.get('https://www.cloudflare.com/cdn-cgi/trace', function(data) {
+                        data = data.trim().split('\n').reduce(function(obj, pair) {
+                        pair = pair.split('=');
+                        return obj[pair[0]] = pair[1], obj;
+                        }, {});
+                        var url='https://api.weatherapi.com/v1/current.json?key=2907bc91fdf24cf583d115833230612&q='+ data.ip +'&aqi=no';
+                        fetch(url, params).then((request) => {
+                            request.json().then((request) => { 
+                                response['condition'] = request
+                                response['lastUpdatedWeather'] = dat.getTime()
+                                chrome.storage.local.set({"widgets":{'weather':response}})
+                            })
+                        })
+                        //console.log("Updated weather")
+                    });
+                }
+            }
+            else {
+                response['condition'] = {"current":{"temp_c":"--","condition":{"code":404}}}
+                chrome.storage.local.set({"widgets":{"weather":response}}) 
+            }
+        }
+        else {
+            if(((dat.getTime() - response.lastUpdatedWeather) >= 3600000 || response.lastUpdatedWeather == null || response.lastUpdatedWeather == undefined) || ((response.location != response.condition.location.name) )) {
+                if(online) {
+                    if(response.location != null || response.location != undefined) {
+                        var url='https://api.weatherapi.com/v1/current.json?key=2907bc91fdf24cf583d115833230612&q='+ response.location +'&aqi=no';
+                        fetch(url, params).then((request) => {
+                            request.json().then((request) => { 
+                                response['condition'] = request
+                                response['lastUpdatedWeather'] = dat.getTime()
+                                response['location'] = response.condition.location.name
+                                chrome.storage.local.set({"widgets":{'weather':response}})
+                            })
+                        })
+                        //console.log("Updated weather")
+                    }
+                    else { 
+                        $.get('https://www.cloudflare.com/cdn-cgi/trace', function(data) {
+                            data = data.trim().split('\n').reduce(function(obj, pair) {
+                            pair = pair.split('=');
+                            return obj[pair[0]] = pair[1], obj;
+                            }, {});
+                            var url='https://api.weatherapi.com/v1/current.json?key=2907bc91fdf24cf583d115833230612&q='+ data.ip +'&aqi=no';
+                            fetch(url, params).then((request) => {
+                                request.json().then((request) => { 
+                                    response['condition'] = request
+                                    response['lastUpdatedWeather'] = dat.getTime()
+                                    response['location'] = response.condition.location.name
+                                    chrome.storage.local.set({"widgets":{'weather':response}})
+                                })
+                            })
+                            //console.log("Updated weather")
+                        });
+                    }
+                }
+                else {
+                    response['condition'] = {"current":{"temp_c":"--","condition":{"code":404}}}
+                    chrome.storage.local.set({"widgets":{"weather":response}}) 
+                }
+            }
+        }
+        if(response.status) {
+            try {
+                var stats = document.getElementById("weatherStats")
+                var icon = document.createElement("span")
+                var text = document.createElement("div")
+                var city = document.createElement("div")
+                text.innerHTML = response.condition.current.temp_c + "°C"
+                city.innerHTML = response.condition.location.name
+                city.setAttribute("style","font-size:.7vw;")
+                icon.setAttribute("class","material-symbols-outlined")
+                icon.setAttribute("id","weatherIcon")
+                icon.setAttribute("style","font-size:3vw;")
+                icon.innerText = getIcon(response.condition.current.condition.code)
+                stats.innerHTML = ""
+                stats.appendChild(icon)
+                stats.appendChild(text)
+                stats.appendChild(city)
+            }
+            catch(e) { console.log() }
+        }
+        else {
+            var stats = document.getElementById("weatherStats")
+            stats.innerHTML = ""
+        }
+    });
+}
+
+fetchWeatherData()
+setInterval(fetchWeatherData, 1000);

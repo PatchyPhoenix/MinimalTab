@@ -15,9 +15,10 @@ chrome.storage.local.get(["widgets"]).then((result) => {
         weatherStatus.checked = true;
         var poweredBy = document.createElement('a')
         poweredBy.setAttribute("href", "https://www.weatherapi.com/")
-        poweredBy.setAttribute("style", "color:rgb(103, 103, 103);")
+        poweredBy.setAttribute("style", "color:#BABABA")
         poweredBy.innerText = "WeatherAPI"
         document.getElementById('weatherSettings').appendChild(locationTextBox)
+        document.getElementById('weatherSettings').appendChild(document.createElement('br'))
         document.getElementById('weatherSettings').appendChild(document.createElement('br'))
         document.getElementById('weatherSettings').append("Powered by ")
         document.getElementById('weatherSettings').appendChild(poweredBy)
@@ -62,10 +63,11 @@ autoBt.addEventListener('click', function(e) {
                     locationTextBox.value = response['location']
                 })
             })
-            console.log("Updated weather")
+            //console.log("Updated weather")
             
         });
     });
+    autoBt.innerHTML = "Detected"; setTimeout(() => { autoBt.innerHTML = "Auto-detect"; }, 1000)
 })
 
 document.getElementById("applyBtW").addEventListener('click', function() { 

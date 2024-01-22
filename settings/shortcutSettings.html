@@ -3,28 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script defer src="scripts/dataIntegrity.js"></script>
-    <link rel="stylesheet" href="style/settings.css">
+    <link rel="stylesheet" href="/style/settings.css">
+    <script defer src="/scripts/dataIntegrity.js"></script>
     <title>Shortcuts</title>
 </head>
 <body style="overflow-y: auto;">
     <div class="settingsPopup">
         <section class="titleText" style="margin-bottom: 5vw;">Shortcuts</section>
-        <label style="font-size: 16px;" class="text">Shortcut Drawer</label><br><input id="shortcutDrawerCheck" type="checkbox"></input><br>
+        <label style="font-size: 16px;" class="text">Shortcut Drawer</label><br><input id="shortcutDrawerCheck" type="checkbox"><br>
         <div style="text-align: center;">
             <form class="settingsIn">
             <div style="display: inline-block; width: 56vw;">
-                <input id="shortcutName" style="margin-bottom: 0; border-radius: 10px 10px 0 0 ;border-bottom: 1px solid rgba(255, 255, 255, 0.21);" type="text" autocomplete="off" placeholder="Enter the name"></input>
-                <input id="shortcutAddr" style="margin-top: 0; border-radius: 0 0 10px 10px ;" type="url" autocomplete="off" placeholder="Enter the URL"></input>
+                <input id="shortcutName" style="margin-bottom: 0; border-radius: 10px 10px 0 0 ;border-bottom: 1px solid rgba(255, 255, 255, 0.21);" type="text" autocomplete="off" placeholder="Enter the name">
+                <input id="shortcutAddr" style="margin-top: 0; border-radius: 0 0 10px 10px ;" type="url" autocomplete="off" placeholder="Enter the URL">
             </div>
             <button class="iconButton" id="addShortcut"><span class="material-symbols-outlined">add</span></button></form>
         <hr style="background-color:#303030;color:#303030;height: 1px; margin: 1vh;border: none;">
         <div id="shortcuts"></div>
         <hr style="background-color:#303030;color:#303030;height: 1px;margin: 1vh;border: none;">
             <button class="longButton" id="applyBtS">Apply</button>
-            <a style="border-radius: 10px; width: 300px; user-select: none;" href="settings.html"><button class="longButton" id="backBtS">Back</button></a>
+            <a style="border-radius: 10px; width: 50vw; user-select: none;" href="index.html"><button class="longButton">Back</button></a>
         </div>
     </div>
-    <script type="module" src="scripts/shortcutSettings.js"></script>
+    <script type="module" src="/scripts/shortcutSettings.js"></script>
 </body>
 </html>
