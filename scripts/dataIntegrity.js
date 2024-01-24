@@ -1,5 +1,5 @@
 // deprecated (PLANING TO BE REVIVED)
-function handleMissingData() {
+async function handleMissingData() {
   chrome.storage.local.get(["primaryClr"]).then((result) => { 
       if (result.primaryClr == null || result.primaryClr == undefined) { 
           chrome.storage.local.set({"primaryClr": "#BEBEBE"}); 

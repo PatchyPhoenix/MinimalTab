@@ -5,7 +5,7 @@
 var root = document.querySelector(':root');
 let colorsChanged = true;
 
-function setColors () {
+async function setColors () {
     chrome.storage.local.get(["primaryClr"]).then((result) => {
         root.style.setProperty('--primaryClr', result.primaryClr)
     });
@@ -15,7 +15,7 @@ function setColors () {
     });
 }
 
-function setBg () {
+async function setBg () {
     chrome.storage.local.get(["bgImage"]).then((result) => {
         if(result.bgImage != null || result.bgImage != undefined)
             root.style.setProperty('--bg', result.bgImage)

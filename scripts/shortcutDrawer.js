@@ -162,7 +162,7 @@ function onMouseUpdate(e) {
 
 
 // bug - excess shortcuts are spawned ( seems to be better )
-function handleSitesBar() {
+async function handleSitesBar() {
     chrome.storage.local.get(["shortcutDrawer"]).then((result) => { 
         if (result.shortcutDrawer) { 
             if (y >= (screen.height * 56 / 100)) {

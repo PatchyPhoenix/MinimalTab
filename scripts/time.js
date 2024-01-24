@@ -1,6 +1,6 @@
 const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
-function setTime() {
+async function setTime() {
     const d = new Date();
     var date = d.getDate();
     var day = days[d.getDay()];
@@ -20,7 +20,7 @@ function setTime() {
     delete date, hours, minutes, time;
 }
 
-function addSuffix (no) {
+async function addSuffix (no) {
     no = no % 10;
     if(no == 1)
         return "st"

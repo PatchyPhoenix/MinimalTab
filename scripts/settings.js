@@ -17,7 +17,7 @@ document.getElementById("applyBt").addEventListener('click', function() {
     setTimeout(() => { document.getElementById("applyBt").innerHTML = "Apply"; }, 1000)
 })
 
-function apply () { 
+async function apply () { 
     chrome.storage.local.get(["secondaryClr"]).then((result) => { 
         if (document.getElementById("secondaryClr").value != result) {
           chrome.storage.local.set({"secondaryClr":document.getElementById("secondaryClr").value}) 
@@ -31,7 +31,7 @@ function apply () {
       })
 }
 
-function reset () {
+async function reset () {
     chrome.storage.local.set({"primaryClr":"#BEBEBE",
       "secondaryClr":"#BEBEBE",
       "shortcutDrawer":true,

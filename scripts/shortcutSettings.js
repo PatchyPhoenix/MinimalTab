@@ -7,7 +7,7 @@ window.addEventListener("offline", function() {
     online = false;
 })
 
-function isUrlValid(string) {
+async function isUrlValid(string) {
     try {
       new URL(string);
       return true;
@@ -94,7 +94,7 @@ document.getElementById("applyBtS").addEventListener('click', function()
     document.getElementById("applyBtS").innerHTML = "Applied"; setTimeout(() => { document.getElementById("applyBtS").innerHTML = "Apply"; }, 1000)
 })
 
-function addShortcutAddr() {
+async function addShortcutAddr() {
     var name = (document.getElementById("shortcutName").value);
     var address = (document.getElementById("shortcutAddr").value).toLowerCase();
     var icon = null;
