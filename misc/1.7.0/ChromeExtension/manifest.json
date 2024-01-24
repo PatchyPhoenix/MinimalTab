@@ -1,0 +1,28 @@
+{
+    "name": "MinimalTab",
+    "version": "1.7.0",
+    "description": "A stunning minimalistic custom new tab",
+    "manifest_version": 3,
+    "author": "patchyphoenix",
+    "action":{
+        "default_popup": "settings.html",
+        "default_title": "MinimalTab"
+    },
+    "chrome_url_overrides": {
+        "newtab": "index.html"
+    },
+    "permissions":[
+        "storage",
+        "sidePanel"
+    ],
+    "side_panel":{
+        "default_path":"settings.html"
+    },
+    "icons": {
+        "16": "resources/site16.png",
+        "32": "resources/site32.png",
+        "64": "resources/site32.png",
+        "128": "resources/site32.png"
+    },
+    "version_name": "1.7.0 beta"
+}
