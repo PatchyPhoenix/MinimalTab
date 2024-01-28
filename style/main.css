@@ -80,10 +80,10 @@ body{
     left: 0px;
     right: 0px;
     padding-top: 3vw;
-    background-size: cover;
-    background-repeat: no-repeat;
+    background: var(--bg);
     background-position: center;
-    background-image: var(--bg);
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .box{

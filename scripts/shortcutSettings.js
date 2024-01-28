@@ -20,16 +20,16 @@ async function isUrlValid(string) {
 let noOfShortcuts = 0;
 let shortcuts = [];
 
-chrome.storage.local.get(["shortcutDrawer"]).then((result) => { 
-    if (result.shortcutDrawer == true) {
+chrome.storage.local.get(["shortcuts"]).then((result) => { 
+    result = result.shortcuts
+    if (result['drawer'] == true) {
         document.getElementById("shortcutDrawerCheck").checked = true;
     }
-});
 
-// set up the list of shortcuts in the shortcut settings menu
-chrome.storage.local.get(["shortcuts"]).then((result) => { 
-    shortcuts = result.shortcuts;
+    shortcuts = result['links'];
     noOfShortcuts = shortcuts.length;
+    if(noOfShortcuts != 0)
+        document.getElementById("shortcuts").innerHTML = ""
     for(let i = 0;i<noOfShortcuts;i++) {
         let shortcut = document.createElement("div");
         shortcut.setAttribute("style","display:inline-block; width:46vw;");
@@ -64,7 +64,7 @@ chrome.storage.local.get(["shortcuts"]).then((result) => {
         
         document.getElementById("shortcuts").appendChild(shortcut);
         document.getElementById("shortcuts").appendChild(deleteButton);
-        document.getElementById("shortcut"+i).addEventListener('click', function() { console.log(shortcuts[i]); shortcuts.splice(i,1);chrome.storage.local.set({"shortcuts":shortcuts}); location.reload(); })
+        document.getElementById("shortcut"+i).addEventListener('click', function() { console.log(shortcuts[i]); shortcuts.splice(i,1); result['links'] = shortcuts; chrome.storage.local.set({"shortcuts":result}); location.reload(); })
     }
 });
 
@@ -73,9 +73,8 @@ document.getElementById("addShortcut").addEventListener('click', function() { ad
 
 document.getElementById("applyBtS").addEventListener('click', function() 
 {
-    chrome.storage.local.set({"shortcutDrawer":document.getElementById("shortcutDrawerCheck").checked});
     chrome.storage.local.get(["shortcuts"]).then((result) => { 
-        result = result.shortcuts;
+        result = result.shortcuts['links'];
         for(let i = 0;i<result.length;i++) {
             let shortcut = document.getElementById("shortcutItem"+i).value;
             let shortcutName = document.getElementById("shortcutItemName"+i).value;
@@ -89,7 +88,7 @@ document.getElementById("applyBtS").addEventListener('click', function()
             if(result[i]['name'] != shortcutName)
                 result[i]['name'] = shortcutName;
         }
-        chrome.storage.local.set({"shortcuts":result});
+        chrome.storage.local.set({"shortcuts":{"drawer":document.getElementById("shortcutDrawerCheck").checked,"links":result}});
     });
     document.getElementById("applyBtS").innerHTML = "Applied"; setTimeout(() => { document.getElementById("applyBtS").innerHTML = "Apply"; }, 1000)
 })
@@ -104,8 +103,13 @@ async function addShortcutAddr() {
         icon.searchParams.set("size","16")
         icon = icon.toString()
     }
-    if(isUrlValid(address) == true)
-        chrome.storage.local.get(["shortcuts"]).then((result) => { result = result.shortcuts; var shortcut = {'name':name,'url':address,'icon':icon} ;result.push(shortcut); chrome.storage.local.set({"shortcuts":result})});
+    if(await isUrlValid(address) == true)
+        chrome.storage.local.get(["shortcuts"]).then((result) => { 
+            result = result.shortcuts;
+            var shortcut = {'name':name,'url':address,'icon':icon}; 
+            result['links'].push(shortcut);
+            chrome.storage.local.set({"shortcuts":result})
+        });
     else
         var textField = document.getElementById("shortcutAddr");
         textField.value = "";

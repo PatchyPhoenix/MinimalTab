@@ -1,4 +1,4 @@
-let online = window.navigator.onLine;
+var online = window.navigator.onLine;
 
 window.addEventListener("online", function() {
     online = true;

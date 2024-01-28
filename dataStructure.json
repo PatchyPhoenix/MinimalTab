@@ -1,0 +1,23 @@
+{
+    "background":{
+        "type": "clr/img",
+        "src": "url/clrcode"
+    },
+    "colours":{
+        "primary": "code",
+        "secondary": "code"
+    },
+    "shortcuts":{
+        "drawer":true,
+        "links":[]
+    },
+    "widgets":{
+        "weather":{
+            "condition":{},
+            "lastUpdatedWeather":"",
+            "location": "blr",
+            "status":true
+        }
+    },
+    "googleIcon":"..."
+}

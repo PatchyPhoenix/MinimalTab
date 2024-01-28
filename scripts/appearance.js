@@ -6,21 +6,25 @@ var root = document.querySelector(':root');
 let colorsChanged = true;
 
 async function setColors () {
-    chrome.storage.local.get(["primaryClr"]).then((result) => {
-        root.style.setProperty('--primaryClr', result.primaryClr)
-    });
-
-    chrome.storage.local.get(["secondaryClr"]).then((result) => {
-        root.style.setProperty('--secondaryClr', result.secondaryClr)
+    chrome.storage.local.get(["colours"]).then((result) => {
+        root.style.setProperty('--primaryClr', result.colours['primary'])
+        root.style.setProperty('--secondaryClr', result.colours['secondary'])
     });
 }
 
 async function setBg () {
-    chrome.storage.local.get(["bgImage"]).then((result) => {
-        if(result.bgImage != null || result.bgImage != undefined)
-            root.style.setProperty('--bg', result.bgImage)
-        else
-            root.style.setProperty('--bg', 'url("/resources/background.png")')
+    chrome.storage.local.get(["background"]).then((result) => {
+        result = result.background
+        if(result.type == "colour") {
+            root.style.setProperty("--bg",result.src)
+        }
+        else if(result.type == "image"){
+            console.log("image")
+            if(result.src != null || result.src != undefined)
+                root.style.setProperty('--bg', result.src)
+            else
+                root.style.setProperty('--bg', 'url("/resources/background.png")')
+        }
     });
 }
 

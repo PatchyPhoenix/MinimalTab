@@ -84,7 +84,8 @@ body{
 }
 
 .settingsPopup{
-    padding: 10vw;
+    padding: 8vw;
+    padding-bottom: 5vw;
     align-items: normal;
     text-align: left;
 }
@@ -300,4 +301,51 @@ input[type="color"]::-webkit-color-swatch {
 #location:focus {
     outline:none;
     box-shadow: none;
+}
+
+select {
+    outline: 0;
+    font-family: 'FiraLight';
+    color: #BABABA;
+    background: #222222;
+    background-image: none;
+    border: none;
+    width:70vw;
+    border-radius: 10px;
+    padding: 2vw;
+    margin: 3vw;
+    cursor: pointer;
+}
+
+select:hover{
+    background:var(--secondaryClr);
+}
+
+select::selection{
+    background-color: aqua;
+}
+
+.iconTextButton{
+    justify-content: center;
+    display: inline-block;
+    min-width: 23vw;
+    max-width: 23vw;
+    padding:13vw;
+    margin:3vw;
+    font-family: 'FiraLight';
+    color: #BABABA;
+    text-decoration: none;
+    border-radius: 10px;
+    margin: 2vw;
+    background: rgba(255, 255, 255, 0.14);
+    border: solid 1px rgba(39, 39, 39, 0.14);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: saturate(180%) blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    transition: all .2s;
+}
+
+.iconTextButton:hover{
+    color: var(--primaryClr);
+    background-color: var(--secondaryClr);
 }

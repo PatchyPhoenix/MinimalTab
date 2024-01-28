@@ -1,3 +1,6 @@
 Shortcut icon caching
 Weather widget
-Major Performance improvement
+Major Performance improvement - decrease CPU usage
+Major Performance improvement - decrease JS times
+Improved settings
+Background customization

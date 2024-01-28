@@ -10,19 +10,24 @@
 <body style="overflow-y: auto;">
     <div class="settingsPopup">
         <section class="titleText" style="margin-bottom: 5vw;">Settings</section>
-        <!-- <form class="settingsIn"> -->
-            <label style="font-size: 16px;" class="text">Primary Color</label><br>
-            <input id="primaryClr" type="color"><br>
-            <label style="font-size: 16px;" class="text">Secondary Color</label><br>
-            <input id="secondaryClr" type="color"><br>
-            <div style="text-align: center;">
-                <button class="longButton" id="applyBt">Apply</button>
-                <button class="longButton" id="resetBt">Reset</button><br><br>
-                <a style="border-radius: 10px; width: 50vw; user-select: none;" href="backgroundSettings.html"><button class="longButton">Background Settings</button></a><br>
-                <a style="border-radius: 10px; width: 50vw; user-select: none;" href="widgetSettings.html"><button class="longButton">Widget Settings</button></a><br>
-                <a style="border-radius: 10px; width: 50vw; user-select: none;" href="shortcutSettings.html"><button class="longButton">Shortcut Settings</button></a><br>
-            </div>
-        <!-- </form> -->
+        <div style="text-align: center;display: inline-block;">
+            <a href="appearanceSettings.html" style="color: black;">
+                <div class="iconTextButton">
+                    Appearance Settings
+                </div>
+            </a>
+            <a href="shortcutSettings.html" style="color: black;">
+                <div class="iconTextButton">
+                    Shortcut Settings
+                </div>
+            </a>
+            <a href="widgetSettings.html" style="color: black;">
+                <div class="iconTextButton">
+                    Widget Settings
+                </div>
+            </a>
+            <button class="longButton" id="resetBt">Reset</button><br><br>
+        </div>
     </div>
     <script type="module" src="/scripts/settings.js"></script>
 </body>
