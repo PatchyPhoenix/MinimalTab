@@ -1,7 +1,7 @@
 :root{
-    --bg:url("/resources/background.png");
-    --primaryClr:#aeaeae;
-    --secondaryClr:#303030;
+    --bg:#000000;
+    --primaryClr:#000000;
+    --secondaryClr:#000000;
 }
 
 @font-face {
@@ -41,7 +41,12 @@
     src: url("/fonts/material-icons.woff2") format('woff2');
 }
 
+html{
+    background-color: #000000;
+}
+
 body{
+    display: none;
     background-attachment: fixed;
     background-color: black;;
     color:var(--primaryClr);

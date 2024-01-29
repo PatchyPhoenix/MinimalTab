@@ -1,25 +1,25 @@
 // og colours
 /*{"primaryClr": "#aeaeae"}
 {"secondaryClr": "#303030"}*/
+import { setTime } from "./time.js";
 
 var root = document.querySelector(':root');
-let colorsChanged = true;
 
-async function setColors () {
+function setColors () {
     chrome.storage.local.get(["colours"]).then((result) => {
         root.style.setProperty('--primaryClr', result.colours['primary'])
         root.style.setProperty('--secondaryClr', result.colours['secondary'])
     });
 }
 
-async function setBg () {
+function setBg () {
     chrome.storage.local.get(["background"]).then((result) => {
         result = result.background
         if(result.type == "colour") {
             root.style.setProperty("--bg",result.src)
         }
         else if(result.type == "image"){
-            console.log("image")
+            //console.log("image")
             if(result.src != null || result.src != undefined)
                 root.style.setProperty('--bg', result.src)
             else
@@ -27,6 +27,8 @@ async function setBg () {
         }
     });
 }
+
+setTime();
 
 setColors();
 setBg();
@@ -37,7 +39,8 @@ setInterval(setBg, 250);
 var op = 0;
 var tr = -15
 
-function fadeIn (element) {    
+function fadeIn (element) {  
+    document.body.style.setProperty("display","block")  
     if (op < 110) {
         element.style.opacity = op + "%";
         op += 15;
@@ -50,6 +53,7 @@ function fadeIn (element) {
 }
 
 function moveIn (element) {
+    document.body.style.setProperty("display","block")  
     if (tr > 0){
         //console.log("Done - Move");
         clearInterval(moveInTime);
