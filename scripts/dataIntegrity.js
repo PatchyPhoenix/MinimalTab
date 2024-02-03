@@ -17,7 +17,7 @@ async function handleMissingData() {
   })
   chrome.storage.local.get(["background"]).then((result) => { 
       if (result.background == null || result.background == undefined) { 
-          chrome.storage.local.set({"background": {"type":'colour',"src":"#000000"}}); 
+          chrome.storage.local.set({"background": {"type":'colour',"src":"#0F0F0F"}}); 
           console.log("filling in the gaps - bg") 
       } 
   })

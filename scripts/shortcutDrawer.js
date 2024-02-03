@@ -102,58 +102,6 @@ function addShortcutsToBox() {
     );
 }
 
-// deprecated
-// function shortcuts () {
-//     var boxDiv = document.getElementById("box");
-//     chrome.storage.local.get(["shortcuts"]).then((result) => { 
-//         result = result.shortcuts;
-//         if (result.length != 0)
-//             for(var i = 0;i < result.length;i++) {
-//                 var shortcut = document.createElement("div");
-//                 shortcut.setAttribute('style',"max-width:10vw; display:inline-block;")
-//                 var link = document.createElement('a');
-//                 var name = document.createElement('div');
-//                 name.setAttribute("style","margin-top:1.5vw; font-family:FiraExtraLight;")
-//                 name.innerText = result[i]['name']
-//                 var image = document.createElement("img");
-//                 if(online)
-//                     image.setAttribute('src',("https://s2.googleusercontent.com/s2/favicons?domain=" + result[i]['url']));
-//                 image.setAttribute('alt',"");
-//                 link.setAttribute("href",result[i]['url']);
-//                 link.setAttribute("class","button");
-//                 link.appendChild(image);
-//                 shortcut.appendChild(link);
-//                 shortcut.appendChild(name);
-//                 boxDiv.appendChild(shortcut);
-//             } 
-//         else {
-//             var shortcut = document.createElement("div");
-//             shortcut.setAttribute('style',"max-width:10vw; display:inline-block;")
-//             var link = document.createElement('a');
-//             link.setAttribute("href","https://google.com");
-//             link.setAttribute("class","button");
-//             var name = document.createElement('div');
-//             name.setAttribute("style","margin-top:1.5vw; font-family:FiraExtraLight;")
-//             name.innerText = "Google"
-//             if(online) {
-//                 var image = document.createElement("img");
-//                 image.setAttribute('src',("https://s2.googleusercontent.com/s2/favicons?domain=https://google.com"));
-//                 link.appendChild(image);   
-//             }
-//             else {
-//                 var icon = document.createElement("span");
-//                 icon.setAttribute('class',"material-symbols-outlined");
-//                 icon.setAttribute('style',"font-size:1.3vw;");
-//                 icon.innerText = "globe" 
-//                 link.appendChild(icon);   
-//             }
-//             shortcut.appendChild(link);
-//             shortcut.appendChild(name);
-//             boxDiv.appendChild(shortcut);
-//         }
-//     });
-// }
-
 document.addEventListener('mousemove', onMouseUpdate, false);
 document.addEventListener('mouseenter', onMouseUpdate, false);
 
@@ -178,7 +126,7 @@ async function handleSitesBar() {
     
     function closeBar () {
         if (flag == 0) {
-            if(boxPos < 105) {
+            if(boxPos < 110) {
                 document.getElementById("box").style.transform = "translatey("+boxPos+"%)";
                 boxPos += boxPos * 20 / 100;
             }
