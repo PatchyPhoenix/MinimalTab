@@ -326,6 +326,9 @@ select::selection{
 }
 
 .iconTextButton{
+    color: #BABABA;
+    text-decoration: none;
+    text-align: center;
     justify-content: center;
     display: inline-block;
     min-width: 23vw;
@@ -348,4 +351,38 @@ select::selection{
 .iconTextButton:hover{
     color: var(--primaryClr);
     background-color: var(--secondaryClr);
+}
+
+.demo {
+    text-align: center;
+    border-radius: 10px;
+    padding: 5vw;
+    color: #BABABA;
+    text-decoration: none;
+    background: rgba(255, 255, 255, 0.14);
+    border: solid 1px rgba(39, 39, 39, 0.14);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: saturate(180%) blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    transition: all .2s;
+}
+
+.updatebox{
+    justify-content: center;
+    display: inline-block;
+    width: 20vw;
+    padding:7vw;
+    margin:3vw;
+    color: #BABABA;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.14);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(7.2px);
+    -webkit-backdrop-filter: blur(7.2px);
+    border: 1px solid #202020;
+    transition: all .2s ease-in-out;
+}
+
+.updatebox:hover{
+    background-color: rgba(40, 40, 40, 0.45);
 }
