@@ -1,6 +1,6 @@
 {
     "name": "MinimalTab",
-    "version": "1.10",
+    "version": "1.9.0",
     "description": "A stunning minimalistic custom new tab",
     "manifest_version": 3,
     "author": "patchyphoenix",
@@ -12,17 +12,24 @@
     },
     "permissions":[
         "storage",
-        "tabs"
+        "sidePanel",
+        "tabs",
+        "favicon"
     ],
     "web_accessible_resources":[{
         "resources":["_favicon/*"],
         "matches": ["<all_urls>"],
         "extension_ids":["*"]
         }],
+    "side_panel":{
+        "default_path":"settings/index.html"
+    },
     "icons": {
         "16": "resources/site16.png",
         "32": "resources/site32.png",
         "64": "resources/site32.png",
         "128": "resources/site32.png"
-    }
+    },
+    "version_name": "1.10",
+    "background": {"persistent": true}
 }
