@@ -31,5 +31,5 @@
         "128": "resources/site32.png"
     },
     "version_name": "1.10",
-    "background": {}
+    "background": {"service_worker":"test.js"}
 }
