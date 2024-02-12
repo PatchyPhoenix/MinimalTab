@@ -4,18 +4,12 @@
     "description": "A stunning minimalistic custom new tab",
     "manifest_version": 2,
     "author": "patchyphoenix",
-    "action":{
-        "default_title": "MinimalTab"
-    },
     "permissions":[
         "storage",
         "sidePanel",
         "tabs",
         "favicon"
     ],
-    "side_panel":{
-        "default_path":"settings/index.html"
-    },
     "icons": {
         "16": "resources/site16.png",
         "32": "resources/site32.png",
@@ -23,5 +17,5 @@
         "128": "resources/site32.png"
     },
     "version_name": "1.10",
-    "background": {"scripts":["test.js"]}
+    "background": {"scripts":["scripts/background.js"]}
 }
