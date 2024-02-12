@@ -10,7 +10,7 @@ autoBt.setAttribute('class', "longButton")
 autoBt.setAttribute('id', "autoBt")
 autoBt.innerText = "Auto-Detect"
 
-chrome.storage.local.get(["widgets"]).then((result) => { 
+chrome.storage.local.get("widgets", function(result){ 
     if (result['widgets']['weather']['status'] == true) {
         weatherStatus.checked = true;
         var poweredBy = document.createElement('a')
@@ -31,7 +31,7 @@ chrome.storage.local.get(["widgets"]).then((result) => {
 });
 
 weatherStatus.addEventListener('change', function(e) {
-    chrome.storage.local.get(['widgets']).then((result) => {
+    chrome.storage.local.get('widgets', function(result) {
         result['widgets']['weather']['status'] = weatherStatus.checked;
         chrome.storage.local.set({"widgets":result['widgets']})
         location.reload();
@@ -39,7 +39,7 @@ weatherStatus.addEventListener('change', function(e) {
 })
 
 autoBt.addEventListener('click', function(e) {
-    chrome.storage.local.get(['widgets']).then((response) => {
+    chrome.storage.local.get('widgets', function(response) {
         var dat = new Date();
         response = response.widgets.weather
         $.get('https://www.cloudflare.com/cdn-cgi/trace', function(data) {
@@ -71,7 +71,7 @@ autoBt.addEventListener('click', function(e) {
 })
 
 document.getElementById("applyBtW").addEventListener('click', function() { 
-    chrome.storage.local.get(["widgets"]).then((result) => { 
+    chrome.storage.local.get("widgets", function(result) { 
         result = result['widgets'];
         if(locationTextBox.value != "")
             result['weather']['location'] = locationTextBox.value

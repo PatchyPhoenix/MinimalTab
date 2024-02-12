@@ -1,13 +1,12 @@
-
 // store type (img or clr)
-chrome.storage.local.get(["colours"]).then((result) => {
+chrome.storage.local.get("colours", function(result) {
   document.getElementById("primaryClr").value = result.colours['primary'];
   document.getElementById("secondaryClr").value = result.colours['secondary'];
 });
 
 
 
-chrome.storage.local.get(["background"]).then((response) => {
+chrome.storage.local.get("background", function(response) {
   var dropdown = document.getElementById("bgSelect")
   if(response.background['type'] == "image") {
     dropdown.value = "image"
@@ -98,7 +97,7 @@ document.getElementById("applyBt").addEventListener('click', function() {
 })
 
 async function apply () { 
-  chrome.storage.local.get(["colours"]).then((result) => { 
+  chrome.storage.local.get("colours", function(result) { 
       if (document.getElementById("secondaryClr").value != result.colours['secondary'])
         result.colours['secondary'] = document.getElementById('secondaryClr').value
       if (document.getElementById("primaryClr").value != result.colours['primary'])

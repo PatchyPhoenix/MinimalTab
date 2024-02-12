@@ -72,7 +72,7 @@ function getIcon(conditionCode) {
 
 async function fetchWeatherData() {
     var dat = new Date();
-    chrome.storage.local.get(['widgets']).then((response) => {
+    chrome.storage.local.get('widgets', function(response) {
         response = response.widgets.weather
         if(response.condition == {} || response.condition == null || response.condition == undefined) {
             if(online) {

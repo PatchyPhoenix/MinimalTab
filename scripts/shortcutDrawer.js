@@ -19,7 +19,7 @@ function clearBox() {
 function addShortcutsToBox() {
     clearBox();
     var boxDiv = document.getElementById("box");
-    chrome.storage.local.get(["shortcuts"]).then((result) => { 
+    chrome.storage.local.get("shortcuts", function(result) { 
         drawer = result.shortcuts['drawer']
         result = result.shortcuts['links'];
         console.log(result)
@@ -71,7 +71,7 @@ function addShortcutsToBox() {
             name.innerText = "Google"
             
             var image = document.createElement("img");
-            chrome.storage.local.get(["googleIcon"]).then((result) => {
+            chrome.storage.local.get("googleIcon", function(result) {
                 if(result.googleIcon != null || result.googleIcon != undefined) {
                     image.setAttribute('src', result.googleIcon)
                     link.appendChild(image);
@@ -113,7 +113,7 @@ function onMouseUpdate(e) {
 
 // bug - excess shortcuts are spawned ( seems to be better )
 async function handleSitesBar() {
-    chrome.storage.local.get(["shortcuts"]).then((result) => { 
+    chrome.storage.local.get("shortcuts", function(result) { 
         if (result.shortcuts['drawer']) { 
             if (y >= (screen.height * 56 / 100)) {
                 flag = 1;

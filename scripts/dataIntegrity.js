@@ -9,13 +9,13 @@ window.addEventListener("offline", function() {
 })
 
 async function handleMissingData() {
-  chrome.storage.local.get(["colours"]).then((result) => { 
-      if (result.colours == null || result.colours == undefined) { 
-          chrome.storage.local.set({"colours": {"primary":"#BEBEBE","secondary":"#BEBEBE"}}); 
-          console.log("filling in the gaps - clr") 
-      } 
-  })
-  chrome.storage.local.get(["background"]).then((result) => { 
+  chrome.storage.local.get("colours", function(result) { 
+    if (result.colours == null || result.colours == undefined) { 
+        chrome.storage.local.set({"colours": {"primary":"#BEBEBE","secondary":"#BEBEBE"}}); 
+        console.log("filling in the gaps - clr") 
+    } 
+    })
+  chrome.storage.local.get("background", function(result) { 
       if (result.background == null || result.background == undefined) { 
           chrome.storage.local.set({"background": {"type":'colour',"src":"#0F0F0F"}}); 
           console.log("filling in the gaps - bg") 
@@ -27,13 +27,13 @@ async function handleMissingData() {
           console.log("filling in the gaps - sd") 
       } 
   })*/
-  chrome.storage.local.get(["shortcuts"]).then((result) => { 
+  chrome.storage.local.get("shortcuts", function(result) { 
       if (result.shortcuts == null || result.shortcuts == undefined) { 
           chrome.storage.local.set({"shortcuts": {'drawer':true,"links":[]}}); 
           console.log("filling in the gaps - s") 
       }  
   })
-  chrome.storage.local.get(["widgets"]).then((result) => { 
+  chrome.storage.local.get("widgets", function(result) { 
       if (result.widgets == null || result.widgets == undefined) { 
           chrome.storage.local.set({"widgets": {'weather':{'status':true,"location":null, 'condition':null, "lastUpdatedWeather":0}}});
           console.log("filling in the gaps - w") 
@@ -44,7 +44,7 @@ async function handleMissingData() {
           console.log("filling in the gaps - w") 
       }
   })
-  chrome.storage.local.get(["googleIcon"]).then((result) => {
+  chrome.storage.local.get("googleIcon",function(result){
     if(result.googleIcon == null || result.googleIcon == undefined) {
         if(online) {
             const url = new URL(chrome.runtime.getURL("/_favicon/"))

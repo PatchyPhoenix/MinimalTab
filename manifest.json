@@ -2,13 +2,10 @@
     "name": "MinimalTab",
     "version": "1.9.0",
     "description": "A stunning minimalistic custom new tab",
-    "manifest_version": 3,
+    "manifest_version": 2,
     "author": "patchyphoenix",
     "action":{
         "default_title": "MinimalTab"
-    },
-    "chrome_url_overrides": {
-        "newtab": "index.html"
     },
     "permissions":[
         "storage",
@@ -16,11 +13,6 @@
         "tabs",
         "favicon"
     ],
-    "web_accessible_resources":[{
-        "resources":["_favicon/*"],
-        "matches": ["<all_urls>"],
-        "extension_ids":["*"]
-        }],
     "side_panel":{
         "default_path":"settings/index.html"
     },
@@ -31,5 +23,5 @@
         "128": "resources/site32.png"
     },
     "version_name": "1.10",
-    "background": {"service_worker":"test.js"}
+    "background": {"scripts":["test.js"]}
 }

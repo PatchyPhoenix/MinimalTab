@@ -20,7 +20,7 @@ async function isUrlValid(string) {
 let noOfShortcuts = 0;
 let shortcuts = [];
 
-chrome.storage.local.get(["shortcuts"]).then((result) => { 
+chrome.storage.local.get("shortcuts", function(result) { 
     result = result.shortcuts
     if (result['drawer'] == true) {
         document.getElementById("shortcutDrawerCheck").checked = true;
@@ -73,7 +73,7 @@ document.getElementById("addShortcut").addEventListener('click', function() { ad
 
 document.getElementById("applyBtS").addEventListener('click', function() 
 {
-    chrome.storage.local.get(["shortcuts"]).then((result) => { 
+    chrome.storage.local.get("shortcuts", function(result) { 
         result = result.shortcuts['links'];
         for(let i = 0;i<result.length;i++) {
             let shortcut = document.getElementById("shortcutItem"+i).value;
@@ -104,7 +104,7 @@ async function addShortcutAddr() {
         icon = icon.toString()
     }
     if(await isUrlValid(address) == true)
-        chrome.storage.local.get(["shortcuts"]).then((result) => { 
+        chrome.storage.local.get("shortcuts", function(result) { 
             result = result.shortcuts;
             var shortcut = {'name':name,'url':address,'icon':icon}; 
             result['links'].push(shortcut);

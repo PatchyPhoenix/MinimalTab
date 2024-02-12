@@ -6,14 +6,14 @@ import { setTime } from "./time.js";
 var root = document.querySelector(':root');
 
 function setColors () {
-    chrome.storage.local.get(["colours"]).then((result) => {
+    chrome.storage.local.get("colours" ,function(result) {
         root.style.setProperty('--primaryClr', result.colours['primary'])
         root.style.setProperty('--secondaryClr', result.colours['secondary'])
     });
 }
 
 function setBg () {
-    chrome.storage.local.get(["background"]).then((result) => {
+    chrome.storage.local.get("background", function(result) {
         result = result.background
         if(result.type == "colour") {
             root.style.setProperty("--bg",result.src)
