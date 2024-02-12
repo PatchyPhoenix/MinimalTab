@@ -60,6 +60,22 @@ body{
     padding: 0;
 }
 
+.settingsFrame {
+    width: 30vw;
+    height: 100vh;
+    border: none;
+    position: fixed;
+    right: 0;
+    top: 0;
+    transform: translateX(100%);
+    background: rgba(39, 39, 39, 0.14);
+    border: solid 1px rgba(255, 255, 255, 0.14);
+    border-radius: 10px;
+    backdrop-filter: saturate(180%) blur(7.5px);
+    -webkit-backdrop-filter: blur(7.5px);
+    transition: all .2s;
+}
+
 .material-symbols-outlined {
     font-family: 'Material Symbols Outlined';
     font-weight: normal;
