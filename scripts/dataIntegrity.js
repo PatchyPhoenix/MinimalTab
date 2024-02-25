@@ -47,10 +47,10 @@ async function handleMissingData() {
   chrome.storage.local.get("googleIcon",function(result){
     if(result.googleIcon == null || result.googleIcon == undefined) {
         if(online) {
-            const url = new URL(chrome.runtime.getURL("/_favicon/"))
-            url.searchParams.set("pageUrl","https://www.google.com");
-            url.searchParams.set("size","16")
-            chrome.storage.local.set({"googleIcon":url.toString()})
+            // const url = new URL(chrome.runtime.getURL("/_favicon/"))
+            // url.searchParams.set("pageUrl","https://www.google.com");
+            // url.searchParams.set("size","16")
+            chrome.storage.local.set({"googleIcon":"https://s2.googleusercontent.com/s2/favicons?domain=https://google.com"})
         }
 
         else {
