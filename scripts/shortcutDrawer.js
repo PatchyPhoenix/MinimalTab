@@ -19,7 +19,7 @@ function clearBox() {
 function addShortcutsToBox() {
     clearBox();
     var boxDiv = document.getElementById("box");
-    chrome.storage.local.get("shortcuts", function(result) { 
+    chrome.storage.local.get(["shortcuts"]).then((result) => { 
         drawer = result.shortcuts['drawer']
         result = result.shortcuts['links'];
         console.log(result)
@@ -71,7 +71,7 @@ function addShortcutsToBox() {
             name.innerText = "Google"
             
             var image = document.createElement("img");
-            chrome.storage.local.get("googleIcon", function(result) {
+            chrome.storage.local.get(["googleIcon"]).then((result) => {
                 if(result.googleIcon != null || result.googleIcon != undefined) {
                     image.setAttribute('src', result.googleIcon)
                     link.appendChild(image);
@@ -113,41 +113,16 @@ function onMouseUpdate(e) {
 
 // bug - excess shortcuts are spawned ( seems to be better )
 async function handleSitesBar() {
-    chrome.storage.local.get("shortcuts", function(result) { 
+    chrome.storage.local.get(["shortcuts"]).then((result) => { 
         if (result.shortcuts['drawer']) { 
             if (y >= (screen.height * 56 / 100)) {
-                flag = 1;
+                document.getElementById("box").style.transform = "translatey(0%)";
             }
             else {
-                flag = 0;
+                document.getElementById("box").style.transform = "translatey(100%)";
             }
         } 
     })
-    
-    function closeBar () {
-        if (flag == 0) {
-            if(boxPos < 110) {
-                document.getElementById("box").style.transform = "translatey("+boxPos+"%)";
-                boxPos += boxPos * 20 / 100;
-            }
-            if(boxPos <= 80 && flagS == 1)
-                flagS = 0;
-        }
-    }
-
-    function openBar () {
-        if (flag == 1 && boxPos > 1) {
-            document.getElementById("box").style.transform = "translatey("+boxPos+"%)";
-            boxPos -= boxPos * 20 / 100;
-            if(flagS != 1 && boxPos >= 1){
-                addShortcutsToBox();
-                flagS = 1;
-            }
-        }
-    }
-
-    openBar();
-    closeBar();
 }
 
 addShortcutsToBox();
