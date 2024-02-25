@@ -38,11 +38,12 @@ function addShortcutsToBox() {
                 }
                 else {
                     if(online) {
-                        const url = new URL(chrome.runtime.getURL("/_favicon/"))
-                        url.searchParams.set("pageUrl",result[i]['url']);
-                        url.searchParams.set("size","16");
-                        result[i]['icon'] = url.toString();
-                        image.setAttribute('src',result[i]['icon']);
+                        // const url = new URL(chrome.runtime.getURL("/_favicon/"))
+                        // url.searchParams.set("pageUrl",result[i]['url']);
+                        // url.searchParams.set("size","16");
+                        // result[i]['icon'] = url.toString();
+                        // image.setAttribute('src',result[i]['icon']);
+                        image.setAttribute('src',"https://s2.googleusercontent.com/s2/favicons?domain="+result[i]['url']);
                         link.appendChild(image);
                     }
                     else {
