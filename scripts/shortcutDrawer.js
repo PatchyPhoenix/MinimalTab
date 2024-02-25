@@ -116,13 +116,38 @@ async function handleSitesBar() {
     chrome.storage.local.get(["shortcuts"]).then((result) => { 
         if (result.shortcuts['drawer']) { 
             if (y >= (screen.height * 56 / 100)) {
-                document.getElementById("box").style.transform = "translatey(0%)";
+                flag = 1;
             }
             else {
-                document.getElementById("box").style.transform = "translatey(100%)";
+                flag = 0;
             }
         } 
     })
+
+    function closeBar () {
+        if (flag == 0) {
+            if(boxPos < 110) {
+                document.getElementById("box").style.transform = "translatey("+boxPos+"%)";
+                boxPos += boxPos * 20 / 100;
+            }
+            if(boxPos <= 80 && flagS == 1)
+                flagS = 0;
+        }
+    }
+
+    function openBar () {
+        if (flag == 1 && boxPos > 1) {
+            document.getElementById("box").style.transform = "translatey("+boxPos+"%)";
+            boxPos -= boxPos * 20 / 100;
+            if(flagS != 1 && boxPos >= 1){
+                addShortcutsToBox();
+                flagS = 1;
+            }
+        }
+    }
+
+    openBar();
+    closeBar();
 }
 
 addShortcutsToBox();
