@@ -38,11 +38,11 @@ function addShortcutsToBox() {
                 }
                 else {
                     if(online) {
-                        const url = new URL(chrome.runtime.getURL("/_favicon/"))
-                        url.searchParams.set("pageUrl",result[i]['url']);
-                        url.searchParams.set("size","16");
-                        result[i]['icon'] = url.toString();
-                        image.setAttribute('src',result[i]['icon']);
+                        // const url = new URL(chrome.runtime.getURL("/_favicon/"))
+                        // url.searchParams.set("pageUrl",result[i]['url']);
+                        // url.searchParams.set("size","16");
+                        // result[i]['icon'] = url.toString();
+                        image.setAttribute('src',"https://s2.googleusercontent.com/s2/favicons?domain="+result[i]['url']);
                         link.appendChild(image);
                     }
                     else {
@@ -78,10 +78,10 @@ function addShortcutsToBox() {
                 }
                 else {
                     if(online) {
-                        const url = new URL(chrome.runtime.getURL("/_favicon/"))
-                        url.searchParams.set("pageUrl","https://www.google.com");
-                        url.searchParams.set("size","16")
-                        chrome.storage.local.set({"googleIcon":url.toString()})
+                        // const url = new URL(chrome.runtime.getURL("/_favicon/"))
+                        // url.searchParams.set("pageUrl","https://www.google.com");
+                        // url.searchParams.set("size","16")
+                        chrome.storage.local.set({"googleIcon":"https://s2.googleusercontent.com/s2/favicons?domain=https://google.com"})
                     }
 
                     else {
@@ -116,13 +116,38 @@ async function handleSitesBar() {
     chrome.storage.local.get(["shortcuts"]).then((result) => { 
         if (result.shortcuts['drawer']) { 
             if (y >= (screen.height * 56 / 100)) {
-                document.getElementById("box").style.transform = "translatey(0%)";
+                flag = 1;
             }
             else {
-                document.getElementById("box").style.transform = "translatey(100%)";
+                flag = 0;
             }
         } 
     })
+
+    function closeBar () {
+        if (flag == 0) {
+            if(boxPos < 110) {
+                document.getElementById("box").style.transform = "translatey("+boxPos+"%)";
+                boxPos += boxPos * 20 / 100;
+            }
+            if(boxPos <= 80 && flagS == 1)
+                flagS = 0;
+        }
+    }
+
+    function openBar () {
+        if (flag == 1 && boxPos > 1) {
+            document.getElementById("box").style.transform = "translatey("+boxPos+"%)";
+            boxPos -= boxPos * 20 / 100;
+            if(flagS != 1 && boxPos >= 1){
+                addShortcutsToBox();
+                flagS = 1;
+            }
+        }
+    }
+
+    openBar();
+    closeBar();
 }
 
 addShortcutsToBox();
