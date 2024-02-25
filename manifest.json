@@ -25,10 +25,10 @@
         "default_path":"settings/index.html"
     },
     "icons": {
-        "16": "resources/site16.png",
-        "32": "resources/site32.png",
-        "64": "resources/site32.png",
-        "128": "resources/site32.png"
+        "16": "resources/logo.png",
+        "32": "resources/logo32.png",
+        "64": "resources/logo64.png",
+        "128": "resources/logo128.png"
     },
     "version_name": "1.10",
     "background": {"persistent": true}
