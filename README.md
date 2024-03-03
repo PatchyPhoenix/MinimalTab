@@ -11,5 +11,12 @@ Features:
 - Download and unzip the code
 - Open the Extensions tab in your browser
 - Enable developer mode
-- Click on "Load unpacked"
+- Select "Load unpacked"
 - Select the folder with "manifest.json"
+
+### Firefox
+- Download and unzip the code
+- Enter the url "about:debugging"
+- Select "This Firefox"
+- Select "Load Temporary Add-On"
+- Select "manifest.json" in the extracted folder
