@@ -14,9 +14,20 @@ Features:
 - Select "Load unpacked"
 - Select the folder with "manifest.json"
 
-### Firefox
+### Firefox - Temporary
 - Download and unzip the code
 - Enter the url "about:debugging"
 - Select "This Firefox"
 - Select "Load Temporary Add-On"
 - Select "manifest.json" in the extracted folder
+
+## Supported Browsers
+
+The supported browsers will receive future feature updates. (Post 1.10 updates)
+
+| Version  | Supported          |
+| -------- | ------------------ |
+| Chrome   | :white_check_mark: |
+| Firefox  | :x:                |
+| Opera    | :white_check_mark: |
+| Edge     | :white_check_mark: |
