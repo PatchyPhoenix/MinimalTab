@@ -24,6 +24,7 @@ Features:
 ## Supported Browsers
 
 The supported browsers will receive future feature updates. (Post 1.10 updates)
+
 The unsupported browsers will only receive critical bug fixes.
 
 | Version  | Supported          |
