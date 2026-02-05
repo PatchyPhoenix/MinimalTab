@@ -11,7 +11,7 @@
 <body style="overflow-y: auto;">
     <div class="settingsPopup">
         <section class="titleText" style="margin-bottom: 5vw;">Appearance</section>
-        <div class="text">Colours</div><br>
+        <div class="text">Colors</div><br>
         <label style="font-size: 14px;" class="text">Primary Color</label><br>
         <input id="primaryClr" type="color"><br>
         <label style="font-size: 14px;" class="text">Secondary Color</label><br>
@@ -21,12 +21,17 @@
         <div class="text">Background</div><br>
         <div class="bgSelect" style="text-align: center;">
             <select id="bgSelect">
-                <option id="bgClr" value="colour">Colour</option>
+                <option id="bgClr" value="colour">Color</option>
                 <option id="bgImg" value="image">Image</option>
             </select>
+            <div id="settings"></div>
         </div>
-        <div id="settings"></div>
-        <hr style="background-color:#303030;color:#303030;height: 1px; margin: 1vh;border: none;">
+        
+        
+        <hr style="background-color:#303030;color:#303030;height: 1px; margin: 1vh;border: none;"><br>
+        <label style="font-size: 16px;" class="text">Auto Hide Settings Button</label><br><input id="alwaysOnSettingsButtonCheck" type="checkbox"><br>
+        <div style="text-align: center;"><button class="longButton" id="applyBtSB">Apply</button></div>
+        <br><hr style="background-color:#303030;color:#303030;height: 1px; margin: 1vh;border: none;"><br>
         <div style="text-align: center;">
             <a style="border-radius: 10px; width: 50vw; user-select: none;" href="index.html"><button class="longButton">Back</button></a>
         </div>

@@ -1,0 +1,97 @@
+@font-face {
+    font-family: "FiraLight";
+    src: url("/fonts/FiraSans-Light.ttf");
+}
+
+@font-face {
+    font-family: "FiraMedium";
+    src: url("/fonts/FiraSans-Medium.ttf");
+}
+
+@font-face {
+    font-family: "Roboto";
+    src: url("/fonts/Roboto-LightItalic.ttf");
+}
+
+@font-face {
+    font-family: "FiraThin";
+    src: url("/fonts/FiraSans-Thin.ttf");
+}
+
+@font-face {
+    font-family: "FiraExtraLight";
+    src: url("/fonts/FiraSans-ExtraLight.ttf");
+}
+
+@font-face {
+    font-family: "FiraSemiBold";
+    src: url("/fonts/FiraSans-SemiBold.ttf");
+}
+
+@font-face {
+    font-family: "FiraRegular";
+    src: url("/fonts/FiraSans-Regular.ttf");
+}
+
+@font-face {
+    font-family: 'Material Symbols Outlined';
+    font-style: normal;
+    font-weight: 400;
+    src: url("/fonts/material-icons.woff2") format('woff2');
+}
+
+html{
+    background-color: #0F0F0F;
+}
+
+body{
+    background-attachment: fixed;
+    background-color: #0F0F0F;
+    color: #BEBEBE;
+    align-items: center;
+    user-select: none;
+    font-family: "FiraLight";
+    overflow-x: hidden;
+    padding: 2vw;
+}
+
+.title{
+    font-size: 5vw;
+    color: #BEBEBE;
+    font-family: "FiraSemiBold";
+}
+
+.subTitle{
+    padding: 1vw;
+    padding-left: 0;
+    font-size: 1.5vw;
+    color: #BEBEBE;
+    font-family: "FiraRegular";
+    text-decoration: underline;
+}
+
+.text{
+    padding: 1vw;
+    padding-left: 0;
+    font-size: 1vw;
+    color: #BEBEBE;
+    font-family: "FiraLight";
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #303030;
+    border-radius: 10px;
+    transition: all .2s;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #202020;
+}

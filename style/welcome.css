@@ -1,0 +1,177 @@
+@font-face {
+    font-family: "FiraLight";
+    src: url("/fonts/FiraSans-Light.ttf");
+}
+
+@font-face {
+    font-family: "FiraMedium";
+    src: url("/fonts/FiraSans-Medium.ttf");
+}
+
+@font-face {
+    font-family: "Roboto";
+    src: url("/fonts/Roboto-LightItalic.ttf");
+}
+
+@font-face {
+    font-family: "FiraThin";
+    src: url("/fonts/FiraSans-Thin.ttf");
+}
+
+@font-face {
+    font-family: "FiraExtraLight";
+    src: url("/fonts/FiraSans-ExtraLight.ttf");
+}
+
+@font-face {
+    font-family: "FiraSemiBold";
+    src: url("/fonts/FiraSans-SemiBold.ttf");
+}
+
+@font-face {
+    font-family: "FiraRegular";
+    src: url("/fonts/FiraSans-Regular.ttf");
+}
+
+@font-face {
+    font-family: 'Material Symbols Outlined';
+    font-style: normal;
+    font-weight: 400;
+    src: url("/fonts/material-icons.woff2") format('woff2');
+}
+
+body{
+    height: 100%;
+    background-attachment: fixed;
+    opacity: 0%;
+    background-color: #000;
+    color: #BEBEBE;
+    align-items: center;
+    text-align: center;
+    user-select: none;
+    font-family: "FiraLight";
+    overflow: hidden;
+    padding: 2vw;
+    transition: all .5s;
+}
+
+.title{
+    text-decoration: underline;
+    font-size: 5vw;
+    color: #BEBEBE;
+    font-family: "FiraSemiBold";
+}
+
+.subTitle{
+    padding: 1vw;
+    padding-left: 0;
+    font-size: 1.5vw;
+    color: #BEBEBE;
+    font-family: "FiraRegular";
+    text-decoration: underline;
+}
+
+.text{
+    padding: 2vw;
+    font-size: 1.2vw;
+    color: #BEBEBE;
+    font-family: "FiraLight";
+}
+
+#getStarted {
+    background-color: #BEBEBE;
+    color: #0F0F0F;
+    border: 1px solid #BEBEBE;
+    border-radius: 10px;
+    padding: 1vw;
+    width: 10vw;
+    cursor: pointer;
+    transition: all .2s;
+}
+
+#getStarted:hover{
+    color:#BEBEBE;
+    background-color: #0F0F0F;
+}
+
+.button {
+    position: fixed;
+    bottom: 20%;
+    right: 0%;
+    margin-left: auto;
+    background-color: #BEBEBE;
+    color: #0F0F0F;
+    border: 1px solid #BEBEBE;
+    border-radius: 10px;
+    padding: 1vw;
+    width: 10vw;
+    cursor: pointer;
+    transition: all .2s;
+}
+
+.backButton {
+    position: fixed;
+    bottom: 20%;
+    left: 10%;
+    margin-left: auto;
+    background-color: #BEBEBE;
+    color: #0F0F0F;
+    border: 1px solid #BEBEBE;
+    border-radius: 10px;
+    padding: 1vw;
+    width: 10vw;
+    cursor: pointer;
+    transition: all .2s;
+}
+
+.prefButton {
+    margin-top: 2vw;
+    display: inline-block;
+    background-color: #BEBEBE;
+    color: #0F0F0F;
+    border: 1px solid #BEBEBE;
+    border-radius: 10px;
+    padding: 1vw;
+    width: 10vw;
+    cursor: pointer;
+    transition: all .2s;
+}
+
+.button:hover{
+    color:#BEBEBE;
+    background-color: #0F0F0F;
+}
+
+.backButton:hover {
+    color:#BEBEBE;
+    background-color: #0F0F0F;
+}
+
+.prefButton:hover{
+    color:#BEBEBE;
+    background-color: #0F0F0F;
+}
+
+#para-1{
+    height: 100vh;
+    transform: translateX(0%) translateY(0%);
+    transition: all .2s ease-out;
+}
+
+#para-2 {
+    height: 100vh;
+    transform: translateX(100%) translateY(-110%);
+    transition: all .2s ease-out;
+}
+
+#para-3 {
+    height: 100vh;
+    transform: translateX(200%) translateY(-220%);
+    transition: all .2s ease-out;
+}
+
+#para-4 {
+    height: 100vh;
+    transform: translateX(300%) translateY(-330%);
+    transition: all .2s ease-out;
+}

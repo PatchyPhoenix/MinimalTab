@@ -1,18 +1,22 @@
 // og colours
 /*{"primaryClr": "#aeaeae"}
 {"secondaryClr": "#303030"}*/
+
 import { setTime } from "./time.js";
+
 
 var root = document.querySelector(':root');
 
-function setColors () {
+
+async function setColors () {
     chrome.storage.local.get(["colours"]).then((result) => {
         root.style.setProperty('--primaryClr', result.colours['primary'])
         root.style.setProperty('--secondaryClr', result.colours['secondary'])
     });
 }
 
-function setBg () {
+
+async function setBg () {
     chrome.storage.local.get(["background"]).then((result) => {
         result = result.background
         if(result.type == "colour") {
@@ -28,14 +32,17 @@ function setBg () {
     });
 }
 
+
 setTime();
 
 setColors();
 setBg();
 
+
+setInterval(setTime, 1000)
+
 setInterval(setColors, 250);
 setInterval(setBg, 250);
-setInterval(setTime, 1000)
 
 var op = 0;
 var tr = -15

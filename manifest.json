@@ -1,6 +1,6 @@
 {
     "name": "MinimalTab",
-    "version": "1.10.0",
+    "version": "1.11.0",
     "description": "A stunning minimalistic custom new tab",
     "manifest_version": 3,
     "author": "patchyphoenix",
@@ -14,13 +14,22 @@
         "storage",
         "sidePanel",
         "tabs",
-        "favicon"
+        "favicon",
+        "webRequest",
+        "<all_urls>"
     ],
     "web_accessible_resources":[{
         "resources":["_favicon/*"],
         "matches": ["<all_urls>"],
-        "extension_ids":["*"]
+        "extension_ids":["*"],
+        "use_dynamic_url": false
         }],
+    "content_scripts": [
+        {
+            "matches": ["https://minmaltab.web.app/*"],
+            "js": ["scripts/content.js"]
+        }
+    ],
     "side_panel":{
         "default_path":"settings/index.html"
     },
@@ -30,6 +39,10 @@
         "64": "resources/logo64.png",
         "128": "resources/logo128.png"
     },
-    "version_name": "1.10",
-    "background": {}
+    "version_name": "1.11",
+    "background": {
+        "service_worker": "scripts/service-worker.js"
+    },    
+    "host_permissions": ["<all_urls>"],
+    "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAsUdDO9LO5O1yTQY1aVxgvrnonoJOAHoMY7VZbkm9o2QapxdS2wrcX/7n4/0jAhdXqm+5dQnwRsULCw3qbvewHMAxAOi4h7k0fCiVSx+9HZRSQXOsJuwTxngTEhWHevXGLF+c6/ow56n8g7W1WgTSnljcsyeyB6JScbKfF94/pe7d7ulRKcwXnGG/QLVgBsil3eueVm+yVSYY3ZMDQfQikcDNGtxbnFmN3LUKx0TAS2z3px2fwIimkgq9CO7g87Y48rPZfH3+EW4oy5ToDc9ZCNDP+NLo4f7vZTN3nAV+6OY7fJbfpHL1djq11tahN+u5+BxJqZ1uBh7tgTfKH9tSiwIDAQAB"
 }

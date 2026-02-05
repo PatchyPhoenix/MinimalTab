@@ -3,6 +3,7 @@ var boxPos = 80;
 var flag = 0;
 var flagS = 0;
 
+
 window.addEventListener("online", function() {
     online = true;
 })
@@ -11,10 +12,20 @@ window.addEventListener("offline", function() {
     online = false;
 })
 
-function clearBox() {
-    var boxDiv = document.getElementById("box");
-    boxDiv.innerHTML = ""
+document.addEventListener('mousemove', onMouseUpdate, false);
+document.addEventListener('mouseenter', onMouseUpdate, false);
+
+
+function onMouseUpdate(e) {
+    y = e.pageY;
+    x = e.pageX;
 }
+
+
+function clearBox() {
+    document.getElementById("box").innerHTML = ""
+}
+
 
 function addShortcutsToBox() {
     clearBox();
@@ -22,14 +33,13 @@ function addShortcutsToBox() {
     chrome.storage.local.get(["shortcuts"]).then((result) => { 
         drawer = result.shortcuts['drawer']
         result = result.shortcuts['links'];
-        console.log(result)
         if (result.length != 0)
             for(var i = 0;i < result.length;i++) {
                 var shortcut = document.createElement("div");
                 shortcut.setAttribute('style',"max-width:10vw; display:inline-block;")
                 var link = document.createElement('a');
                 var name = document.createElement('div');
-                name.setAttribute("style","margin-top:1.5vw; font-family:FiraExtraLight;")
+                name.setAttribute("style","margin-top:1.5vw; font-family:FiraRegular;")
                 name.innerText = result[i]['name']
                 var image = document.createElement("img");
                 if(result[i]['icon'] != null || result[i]['icon'] != undefined) {
@@ -67,7 +77,7 @@ function addShortcutsToBox() {
             link.setAttribute("href","https://google.com");
             link.setAttribute("class","button");
             var name = document.createElement('div');
-            name.setAttribute("style","margin-top:1.5vw; font-family:FiraExtraLight;text-shadow:.2vw .2vw rgba(0,0,0,.8);")
+            name.setAttribute("style","margin-top:1.5vw; font-family:FiraRegular;")
             name.innerText = "Google"
             
             var image = document.createElement("img");
@@ -102,53 +112,45 @@ function addShortcutsToBox() {
     );
 }
 
-document.addEventListener('mousemove', onMouseUpdate, false);
-document.addEventListener('mouseenter', onMouseUpdate, false);
-
-function onMouseUpdate(e) {
-    x = e.pageX;
-    y = e.pageY;
-}
-
-
-// bug - excess shortcuts are spawned ( seems to be better )
 async function handleSitesBar() {
     chrome.storage.local.get(["shortcuts"]).then((result) => { 
         if (result.shortcuts['drawer']) { 
-            if (y >= (screen.height * 56 / 100)) {
-                flag = 1;
+            if((document.getElementById("widgetsPanel").style.transform == "translateX(0%)")){
+                if ((y >= (window.innerHeight * 60 / 100) && (x >= (window.innerWidth * 30 / 100)))) {
+                    flag = 1;
+                    document.getElementById("box").style.transform = "translatey(0%)";
+                    if(flagS != 1 && boxPos >= 1){
+                        addShortcutsToBox();
+                        flagS = 1;
+                    }
+                }
+                else {
+                    flag = 0;
+                    document.getElementById("box").style.transform = "translatey(100%)";
+                    if(boxPos <= 80 && flagS == 1)
+                        flagS = 0;
+                }
             }
             else {
-                flag = 0;
+                if (y >= (window.innerHeight * 60 / 100)) {
+                    flag = 1;
+                    document.getElementById("box").style.transform = "translatey(0%)";
+                    if(flagS != 1 && boxPos >= 1){
+                        addShortcutsToBox();
+                        flagS = 1;
+                    }
+                }
+                else {
+                    flag = 0;
+                    document.getElementById("box").style.transform = "translatey(100%)";
+                    if(boxPos <= 80 && flagS == 1)
+                        flagS = 0;
+                }
             }
         } 
     })
-
-    function closeBar () {
-        if (flag == 0) {
-            if(boxPos < 110) {
-                document.getElementById("box").style.transform = "translatey("+boxPos+"%)";
-                boxPos += boxPos * 20 / 100;
-            }
-            if(boxPos <= 80 && flagS == 1)
-                flagS = 0;
-        }
-    }
-
-    function openBar () {
-        if (flag == 1 && boxPos > 1) {
-            document.getElementById("box").style.transform = "translatey("+boxPos+"%)";
-            boxPos -= boxPos * 20 / 100;
-            if(flagS != 1 && boxPos >= 1){
-                addShortcutsToBox();
-                flagS = 1;
-            }
-        }
-    }
-
-    openBar();
-    closeBar();
 }
 
+
 addShortcutsToBox();
-setInterval(handleSitesBar,10);
+setInterval(handleSitesBar,100);

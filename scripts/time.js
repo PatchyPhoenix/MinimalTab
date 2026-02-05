@@ -1,5 +1,6 @@
 const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
+
 async function setTime() {
     const d = new Date();
     var day = days[d.getDay()];
@@ -22,5 +23,6 @@ async function setTime() {
     document.getElementById("Time").innerText = time;
     document.getElementById("Date").innerText = date;
 }
+
 
 export{ setTime };

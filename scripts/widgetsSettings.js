@@ -1,7 +1,10 @@
+setTimeout(()=>{document.body.style.setProperty('opacity','100%');
+document.body.style.setProperty('background-color','#050505');}, 100)
+
 const weatherStatus = document.getElementById('weatherStatus');
 const locationTextBox = document.createElement('input')
 locationTextBox.setAttribute("id","location")
-locationTextBox.setAttribute("style", "margin-bottom: 0; border-radius: 10px;")
+locationTextBox.setAttribute("style", "margin-bottom: 0; border-radius: 10px; border: 1px solid #696969;")
 locationTextBox.setAttribute("type","text")
 locationTextBox.setAttribute("autocomplete","off")
 locationTextBox.setAttribute("placeholder", "Enter the city name")
@@ -25,8 +28,17 @@ chrome.storage.local.get(["widgets"]).then((result) => {
         document.getElementById('weatherSettings').appendChild(document.createElement('br'))
         document.getElementById('weatherSettings').appendChild(document.createElement('br'))
         document.getElementById('weatherSettings').appendChild(autoBt)
+        document.getElementById('searchBarCheck').checked = result['widgets']['search']['status']
+        document.getElementById('widgetPanelCheck').checked = result['widgets']['panel']
+        
         if(result['widgets']['weather']['location'] != undefined || result['widgets']['weather']['location'] != null)
             locationTextBox.value = result['widgets']['weather']['location']
+    }
+    if(result['widgets']['music']['spotify']['code'] != null) {
+        document.getElementById("connectMusic").innerText = "Connected to Spotify"
+    }
+    if(result['widgets']['music']['amazon']['code'] != null) {
+        document.getElementById("connectMusicAmazon").innerText = "Connected to Amazon"
     }
 });
 
@@ -63,7 +75,6 @@ autoBt.addEventListener('click', function(e) {
                     locationTextBox.value = response['location']
                 })
             })
-            //console.log("Updated weather")
             
         });
     });
@@ -80,4 +91,38 @@ document.getElementById("applyBtW").addEventListener('click', function() {
         chrome.storage.local.set({"widgets":result});
     });
     document.getElementById("applyBtW").innerHTML = "Applied"; setTimeout(() => { document.getElementById("applyBtW").innerHTML = "Apply"; }, 1000)
- }) 
+})
+
+
+// music
+
+var clientId = "f47c125dda624fec811445f4dc9dc8d8"
+var clientSecret = "621526bd71e840eea1ff55fe724f9c09"
+var redirect = "https://minmaltab.web.app/connect.html"
+
+function requestAuth() {
+    let url = "https://accounts.spotify.com/authorize"
+    url += "?client_id="+clientId+"&response_type=code&redirect_uri="+encodeURI(redirect)+"&show_dialog=true&scope=user-read-playback-state user-modify-playback-state user-read-currently-playing";
+    window.open(url)
+}
+
+document.getElementById('connectMusic').addEventListener('click', function() { requestAuth(); });
+
+
+document.getElementById('applyBtSb').addEventListener('click', function(e) {
+    chrome.storage.local.get(['widgets']).then((response) => {
+        response = response.widgets;
+        response['search']['status'] = document.getElementById('searchBarCheck').checked
+	    chrome.storage.local.set({"widgets":response});
+    })
+	document.getElementById("applyBtSb").innerHTML = "Applied"; setTimeout(() => { document.getElementById("applyBtSb").innerHTML = "Apply"; }, 1000)
+});
+
+document.getElementById('applyBtWp').addEventListener('click', function(e) {
+    chrome.storage.local.get(['widgets']).then((response) => {
+        response = response.widgets;
+        response['panel'] = document.getElementById('widgetPanelCheck').checked
+	    chrome.storage.local.set({"widgets":response});
+    })
+	document.getElementById("applyBtWp").innerHTML = "Applied"; setTimeout(() => { document.getElementById("applyBtWp").innerHTML = "Apply"; }, 1000)
+});

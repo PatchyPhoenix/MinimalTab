@@ -1,4 +1,10 @@
-var online = false; 
+setTimeout(()=>{document.body.style.setProperty('opacity','100%');
+document.body.style.setProperty('background-color','#050505');}, 100)
+
+var online = window.navigator.onLine;
+let noOfShortcuts = 0;
+let shortcuts = [];
+
 window.addEventListener("online", function() {
     online = true;
 })
@@ -6,6 +12,7 @@ window.addEventListener("online", function() {
 window.addEventListener("offline", function() {
     online = false;
 })
+
 
 async function isUrlValid(string) {
     try {
@@ -17,8 +24,6 @@ async function isUrlValid(string) {
     }
 }
 
-let noOfShortcuts = 0;
-let shortcuts = [];
 
 chrome.storage.local.get(["shortcuts"]).then((result) => { 
     result = result.shortcuts
@@ -39,7 +44,7 @@ chrome.storage.local.get(["shortcuts"]).then((result) => {
         shortcutItemName.setAttribute("id","shortcutItemName"+i);
         shortcutItemName.setAttribute("placeholder","Name");
         shortcutItemName.setAttribute("class","shortcutItem");
-        shortcutItemName.setAttribute("style","margin-bottom: 0; border-bottom: 1px solid rgba(255, 255, 255, 0.21); border-radius:10px 10px 0 0;display:inline-block;width:40vw;");
+        shortcutItemName.setAttribute("style","margin-bottom: 0; border: 1px solid #696969; border-bottom: 0px; border-bottom: 1px solid rgba(255, 255, 255, 0.21); border-radius:10px 10px 0 0;display:inline-block;width:40vw;");
         shortcutItemName.value = shortcuts[i]['name'];
 
         let shortcutItem = document.createElement("input");
@@ -47,7 +52,7 @@ chrome.storage.local.get(["shortcuts"]).then((result) => {
         shortcutItem.setAttribute("id","shortcutItem"+i);
         shortcutItem.setAttribute("placeholder","URL");
         shortcutItem.setAttribute("class","shortcutItem");
-        shortcutItem.setAttribute("style","margin-top: 0; border-radius:0 0 10px 10px;display:inline-block;width:40vw;");
+        shortcutItem.setAttribute("style","margin-top: 0; border: 1px solid #696969; border-top: 0px; border-radius:0 0 10px 10px;display:inline-block;width:40vw;");
         shortcutItem.value = shortcuts[i]['url'];
 
         shortcut.appendChild(shortcutItemName);
@@ -71,6 +76,7 @@ chrome.storage.local.get(["shortcuts"]).then((result) => {
 
 document.getElementById("addShortcut").addEventListener('click', function() { addShortcutAddr(); location.reload(); })
 
+
 document.getElementById("applyBtS").addEventListener('click', function() 
 {
     chrome.storage.local.get(["shortcuts"]).then((result) => { 
@@ -93,13 +99,14 @@ document.getElementById("applyBtS").addEventListener('click', function()
     document.getElementById("applyBtS").innerHTML = "Applied"; setTimeout(() => { document.getElementById("applyBtS").innerHTML = "Apply"; }, 1000)
 })
 
+
 async function addShortcutAddr() {
     var name = (document.getElementById("shortcutName").value);
     var address = (document.getElementById("shortcutAddr").value).toLowerCase();
     var icon = null;
     if(online) {
         icon = new URL(chrome.runtime.getURL("/_favicon/"))
-        icon.searchParams.set("domainUrl",address);
+        icon.searchParams.set("pageUrl",address);
         icon.searchParams.set("size","16")
         icon = icon.toString()
     }

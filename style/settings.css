@@ -37,7 +37,8 @@
 
 body{
     background-attachment: fixed;
-    background-color: #050505;
+    opacity: 0;
+    background-color: #000;
     align-items: center;
     text-align: center;
     user-select: none;
@@ -45,13 +46,14 @@ body{
     margin: 0;
     overflow: hidden;
     padding: 0;
+    transition: all .2s;
 }
 
 .material-symbols-outlined {
     font-family: 'Material Symbols Outlined';
     font-weight: normal;
     font-style: normal;
-    font-size: 24px;
+    font-size: 2.4vw;
     line-height: 1;
     letter-spacing: normal;
     text-transform: none;
@@ -72,7 +74,6 @@ body{
 
 #shortcuts {
     position: relative;
-    max-height:20vh;
     overflow-y: scroll;
 }
 
@@ -123,6 +124,10 @@ input[type="color"]::-webkit-color-swatch {
     height:5vw;
 }
 
+input[type="checkbox"] {
+    accent-color: var(--primaryClr);
+}
+
 #shortcutAddr {
     font-family: 'FiraLight';
     display: inline-block;
@@ -131,7 +136,8 @@ input[type="color"]::-webkit-color-swatch {
     color:#BABABA;
     height: 6vh;
     width: 50vw;
-    border:none;
+    border: 1px solid #696969;
+    border-top: 0px;
     border-radius: 10px 0px 0px 10px;
     background-color: rgba(255, 255, 255, 0.14);
     margin-right: 0;
@@ -149,7 +155,8 @@ input[type="color"]::-webkit-color-swatch {
     color:#BABABA;
     height: 6vh;
     width: 50vw;
-    border:none;
+    border: 1px solid #696969;
+    border-bottom: 0px;
     border-radius: 10px 0px 0px 10px;
     background-color: rgba(255, 255, 255, 0.14);
     margin-right: 0;
@@ -161,8 +168,9 @@ input[type="color"]::-webkit-color-swatch {
 }
 
 #resetBt{
+    width: 72vw;
     background: rgba(39, 39, 39, 0.14);
-    border: solid 1px rgba(255, 255, 255, 0.14);
+    border: 1px solid #696969;
 }
 
 #resetBt:hover{
@@ -172,6 +180,7 @@ input[type="color"]::-webkit-color-swatch {
 .longButton{
     font-family: 'FiraLight';
     align-self: center;
+    cursor: pointer;
     height: 6vh;
     width: 50vw;
     color: #BABABA;
@@ -179,7 +188,7 @@ input[type="color"]::-webkit-color-swatch {
     border-radius: 10px;
     margin: 2vw;
     background: rgba(255, 255, 255, 0.14);
-    border: solid 1px rgba(39, 39, 39, 0.14);
+    border: 1px solid #696969;
     backdrop-filter: saturate(180%) blur(5px);
     -webkit-backdrop-filter: blur(5px);
     transition: all .2s;
@@ -202,7 +211,7 @@ input[type="color"]::-webkit-color-swatch {
     border-radius: 10px;
     margin: 2vw;
     background: rgba(255, 255, 255, 0.14);
-    border: solid 1px rgba(39, 39, 39, 0.14);
+    border: solid 1px rgba(82, 81, 81, 0.14);
     backdrop-filter: saturate(180%) blur(5px);
     -webkit-backdrop-filter: blur(5px);
     transition: all .2s;
@@ -312,7 +321,7 @@ select {
     color: #BABABA;
     background: #222222;
     background-image: none;
-    border: none;
+    border: 1px solid #696969;
     width:70vw;
     border-radius: 10px;
     padding: 2vw;
@@ -326,9 +335,10 @@ select:hover{
 
 .iconTextButton{
     font-family: 'FiraLight';
-    justify-content: center;
+    font-size: 3.4vw;
     display: inline-block;
-    width: 20vw;
+    width: 18vw;
+    height: 18vw;
     padding:7vw;
     margin:3vw;
     color: #BABABA;
@@ -337,7 +347,7 @@ select:hover{
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(7.2px);
     -webkit-backdrop-filter: blur(7.2px);
-    border: 1px solid #202020;
+    border: 1px solid #696969;
     transition: all .2s ease-in-out;
 }
 

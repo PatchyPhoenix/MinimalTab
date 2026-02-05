@@ -15,6 +15,7 @@ Features:
 - Select the folder with "manifest.json"
 
 ### Firefox - Temporary
+### Firefox - Temporary
 - Download and unzip the code
 - Enter the url "about:debugging"
 - Select "This Firefox"
