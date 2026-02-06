@@ -74,8 +74,6 @@ var params = {
 };
 
 
-// no alt :(
-    // could be deprecated and replaced by a dict
 function getIcon(conditionCode) {
     switch(conditionCode) {
         case 1000: return "clear_day"; 
@@ -155,7 +153,6 @@ async function fetchWeatherData() {
                         }, {});
                         var url='https://api.weatherapi.com/v1/current.json?key=2907bc91fdf24cf583d115833230612&q='+ data.ip +'&aqi=no';
                         fetch(url, params).then((request) => {
-                            console.log(response)
                             request.json().then((request) => { 
                                 response.weather['condition'] = request
                                 response.weather['lastUpdatedWeather'] = dat.getTime()
@@ -584,8 +581,8 @@ async function fetchQuote() {
 fetchWeatherData()
 setInterval(fetchWeatherData, 1000);
 
-fetchQuote()
-setInterval(fetchQuote, 5000);
+//fetchQuote()
+//setInterval(fetchQuote, 5000);
 
 handleMusic()
 setInterval(handleMusic, 1000);

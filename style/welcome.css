@@ -155,23 +155,23 @@ body{
 #para-1{
     height: 100vh;
     transform: translateX(0%) translateY(0%);
-    transition: all .2s ease-out;
+    transition: all .7s ease-in-out;
 }
 
 #para-2 {
     height: 100vh;
     transform: translateX(100%) translateY(-110%);
-    transition: all .2s ease-out;
+    transition: all .7s ease-in-out;
 }
 
 #para-3 {
     height: 100vh;
     transform: translateX(200%) translateY(-220%);
-    transition: all .2s ease-out;
+    transition: all .7s ease-in-out;
 }
 
 #para-4 {
     height: 100vh;
     transform: translateX(300%) translateY(-330%);
-    transition: all .2s ease-out;
+    transition: all .7s ease-in-out;
 }

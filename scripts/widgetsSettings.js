@@ -37,9 +37,6 @@ chrome.storage.local.get(["widgets"]).then((result) => {
     if(result['widgets']['music']['spotify']['code'] != null) {
         document.getElementById("connectMusic").innerText = "Connected to Spotify"
     }
-    if(result['widgets']['music']['amazon']['code'] != null) {
-        document.getElementById("connectMusicAmazon").innerText = "Connected to Amazon"
-    }
 });
 
 weatherStatus.addEventListener('change', function(e) {
