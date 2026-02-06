@@ -448,7 +448,7 @@ function handleHomeWidget() {
             handleWidgetPanel()
     })
     var boxDiv = document.getElementById("widgetPanelContent");
-    boxDiv.setAttribute('style',"position:relative; bottom:0vw;")
+    boxDiv.setAttribute('style',"position:relative; bottom:0vw; padding-top:12vh;")
     chrome.storage.local.get(['widgets']).then((response) => {
         response = response.widgets
         if(response.weather.condition == {} || response.weather.condition == null || response.weather.condition == undefined) {
@@ -459,7 +459,7 @@ function handleHomeWidget() {
             if(response.weather.status) {
             try {
                 line = document.createElement("hr")
-                line.setAttribute('style',"background-color:var(--primaryClr); color:var(--primaryClr);height: 1px; margin: 1vh;border: none;")
+                line.setAttribute('style',"background-color:var(--primaryClr); color:var(--primaryClr);height: 1px; margin: 1vh; border: none;")
                 var icon = document.createElement("span")
                 var text = document.createElement("div")
                 var city = document.createElement("div")
@@ -498,7 +498,7 @@ function handleHomeWidget() {
                 boxDiv.appendChild(pressure)
                 boxDiv.appendChild(document.createElement("br"))
                 boxDiv.appendChild(document.createElement("br"))
-                boxDiv.appendChild(line)
+                //boxDiv.appendChild(line)
                 boxDiv.appendChild(document.createElement("br"))
                 boxDiv.appendChild(document.createElement("br"))
             }
@@ -517,72 +517,21 @@ function handleHomeWidget() {
             icon.innerText = "home"
 
             boxDiv.appendChild(icon)
-            boxDiv.appendChild(line)
+            //boxDiv.appendChild(line)
             boxDiv.appendChild(document.createElement("br"))
             boxDiv.appendChild(document.createElement("br"))
         }
         
-        var quote = document.createElement("div")
-        quote.id = 'quote';
-        var author = document.createElement("div")
-        quote.setAttribute('style',"font-size:1.5vw;")
-        author.setAttribute('style',"text-align:right; font-size:1vw;")
-        quote.innerText = response.quotes['quote']
-        author.innerHTML = "<u><b>" + response.quotes['author'] + "</b></u>"
-
-        boxDiv.appendChild(quote)
-        
-        line = document.createElement("hr")
-        line.setAttribute('style',"background-color:var(--primaryClr); color:var(--primaryClr);height: 1px; margin: 1vh;border: none;")
-
-        boxDiv.appendChild(document.createElement("br"))
-        boxDiv.appendChild(author)
-        boxDiv.appendChild(document.createElement("br"))
-        boxDiv.appendChild(document.createElement("br"))
-        boxDiv.appendChild(line)
+        // quotes - deprecated
     });
 }
 
 
-//quotes
-async function fetchQuote() {
-    var params = {
-        headers:{
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Credentials": "true ",
-        "Access-Control-Allow-Methods": "OPTIONS, GET, POST",
-        "Access-Control-Allow-Headers": "Content-Type, Depth, User-Agent, X-File-Size, X-Requested-With, If-Modified-Since, X-File-Name, Cache-Control"}
-    };
-    var dat = new Date();
-    chrome.storage.local.get(['widgets']).then((response) => {
-        response = response.widgets
-        if((((dat.getTime() - response.quotes.lastUpdated) >= (1000*60*60*24) || response.quotes.lastUpdated == null || response.quotes.lastUpdated == undefined) )) {
-            if(online) {
-                var url='https://zenquotes.io/api/quotes';
-                fetch(url, params).then((request) => {
-                    request.json().then((request) => { 
-                        response.quotes['quote'] = request[0]['q']
-                        response.quotes['author'] = "- " + request[0]['a']
-                        response.quotes['lastUpdated'] = dat.getTime()
-                        chrome.storage.local.set({"widgets":response}) 
-                    })
-                })
-            }
-            else {
-                response.quotes['quote'] = "I have become death, the destroyer of worlds."
-                response.quotes['author'] = "- J Robert Oppenheimer"
-                chrome.storage.local.set({"widgets":response}) 
-            }
-            chrome.storage.local.set({"widgets":response}) 
-        }
-    });
-}
+//quotes - deprecated
+
 
 fetchWeatherData()
 setInterval(fetchWeatherData, 1000);
-
-//fetchQuote()
-//setInterval(fetchQuote, 5000);
 
 handleMusic()
 setInterval(handleMusic, 1000);

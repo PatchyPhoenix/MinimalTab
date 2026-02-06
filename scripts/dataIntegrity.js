@@ -35,7 +35,6 @@ async function handleMissingData() {
         if (result.widgets == null || result.widgets == undefined) { 
             chrome.storage.local.set({"widgets": {'weather':{'status':true,"location":null, 'condition':null, "lastUpdatedWeather":0},
                                                 'music':{'amazon':{"code":null, "accessToken":null, 'refreshToken':null},'spotify':{"code":null, "accessToken":null, 'refreshToken':null}}},
-                                                "quotes":{"lastUpdated":0,"quote":null,'author':null},
                                                 "search":{"status":false, 'searchEngine':"google"}});
             console.log("filling in the gaps - w") 
         } 
@@ -46,11 +45,6 @@ async function handleMissingData() {
         }
         else if(result.widgets.music == null || result.widgets.music == undefined) {
             result.widgets.music = {"spotify":{"code":null, "accessToken":null, 'refreshToken':null}}
-            chrome.storage.local.set({"widgets": result.widgets});
-            console.log("filling in the gaps - w")
-        }
-        else if(result.widgets.quotes == null || result.widgets.quotes == undefined) {
-            result.widgets.quotes = {"lastUpdated":0,"quote":null,'author':null}
             chrome.storage.local.set({"widgets": result.widgets});
             console.log("filling in the gaps - w")
         }
