@@ -7,6 +7,8 @@ import { setTime } from "./time.js";
 
 var root = document.querySelector(':root');
 
+var op = 0;
+var tr = -15
 
 async function setColors () {
     chrome.storage.local.get(["colours"]).then((result) => {
@@ -31,21 +33,6 @@ async function setBg () {
         }
     });
 }
-
-
-setTime();
-
-setColors();
-setBg();
-
-
-setInterval(setTime, 1000)
-
-setInterval(setColors, 250);
-setInterval(setBg, 250);
-
-var op = 0;
-var tr = -15
 
 function fadeIn (element) {  
     document.body.style.setProperty("display","block")  
@@ -86,3 +73,14 @@ function moveIn (element) {
 
 var fadeInBg = setInterval(fadeIn, 50, document.getElementById("bg"))
 var moveInTime = setInterval(moveIn, 10, document.getElementById("Time"));
+
+
+setTime();
+
+setColors();
+setBg();
+
+setInterval(setTime, 1000)
+
+setInterval(setColors, 1000);
+setInterval(setBg, 1000);

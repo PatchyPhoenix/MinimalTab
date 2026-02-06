@@ -51,8 +51,8 @@ function handleColour() {
 }
 
 
-var image = setInterval(handleImage, 250)
-var colour = setInterval(handleColour, 250)
+var image = setInterval(handleImage, 3000)
+var colour = setInterval(handleColour, 3000)
 
 
 function handleInputFields() {
@@ -71,7 +71,7 @@ function handleInputFields() {
 		input.setAttribute("accept","image/png, image/gif, image/jpeg")
 		settingsDiv.innerHTML = ""
 		settingsDiv.appendChild(input)
-		image = setInterval(handleImage,250)
+		image = setInterval(handleImage,3000)
 	}
 	else if(stat == 'colour') {
 		clearInterval(image)
@@ -89,7 +89,7 @@ function handleInputFields() {
 		settingsDiv.appendChild(input)
 		settingsDiv.appendChild(document.createElement('br'))
 		settingsDiv.appendChild(di)
-		colour = setInterval(handleColour, 250)
+		colour = setInterval(handleColour, 3000)
 	}
 }
 

@@ -55,4 +55,4 @@ async function handleSettingsButton() {
 }
 
 
-setInterval(handleSettingsButton, 100)
+setInterval(handleSettingsButton, 300)

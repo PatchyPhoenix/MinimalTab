@@ -49,10 +49,14 @@ function onMouseUpdate(e) {
 function handleSearch() {
     chrome.storage.local.get(['widgets']).then((response) => {
         response = response.widgets['search']
-        if(response['status'])
+        if(response['status']) {
+            document.getElementById('searchBar').style.opacity = 1
             document.getElementById('searchBar').style.display = "inline"
-        else
+        }
+        else {
             document.getElementById('searchBar').style.display = "none"
+            document.getElementById('searchBar').style.opacity = 0
+        }
     })
 }
 
@@ -533,7 +537,8 @@ function handleHomeWidget() {
 fetchWeatherData()
 setInterval(fetchWeatherData, 1000);
 
-handleMusic()
-setInterval(handleMusic, 1000);
+// deprecated -> chrome only
+//handleMusic()
+//setInterval(handleMusic, 1000);
 
-setInterval(handleSearch, 100);
+setInterval(handleSearch, 400);

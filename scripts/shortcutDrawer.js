@@ -153,4 +153,4 @@ async function handleSitesBar() {
 
 
 addShortcutsToBox();
-setInterval(handleSitesBar,100);
+setInterval(handleSitesBar, 250);
