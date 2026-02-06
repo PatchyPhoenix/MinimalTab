@@ -1,5 +1,5 @@
 setTimeout(()=>{document.body.style.setProperty('opacity','100%');
-document.body.style.setProperty('background-color','#050505');}, 100)
+document.body.style.setProperty('background-color','#090909');}, 100)
 
 document.getElementById("resetBt").addEventListener('click', function() { 
     reset();
@@ -11,6 +11,6 @@ async function reset () {
         "colours":{"primary":"#BEBEBE", "secondary":"#BEBEBE"},
         "alwaysOnSettingsButton":true,
         "shortcuts":{"drawer":true,"links":[]},
-        "background":{"type":"colour","src":"#0F0F0F"},
+        "background":{"type":"colour","src":"#090909"},
         "widgets":{"weather":{"condition":null, "lastUpdatedWeather":0,"location":null,"status":true}, "search":{'status':false,"searchEngine":"google"}}});
 }

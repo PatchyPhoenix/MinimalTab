@@ -40,9 +40,6 @@
     src: url("/fonts/material-icons.woff2") format('woff2');
 }
 
-html{
-    background-color: #000;
-}
 
 body{
     background-attachment: fixed;

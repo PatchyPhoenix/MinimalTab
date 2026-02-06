@@ -1,5 +1,5 @@
 setTimeout(()=>{document.body.style.setProperty('opacity','100%');
-document.body.style.setProperty('background-color','#050505');}, 100)
+document.body.style.setProperty('background-color','#090909');}, 100)
 
 var online = window.navigator.onLine;
 let noOfShortcuts = 0;

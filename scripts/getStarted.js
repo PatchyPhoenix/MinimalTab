@@ -1,5 +1,5 @@
 setTimeout(()=>{document.body.style.setProperty('opacity','100%');
-document.body.style.setProperty('background-color','#0F0F0F');}, 100)
+document.body.style.setProperty('background-color','#090909');}, 100)
 
 
 document.getElementById('getStarted').addEventListener('click', () => {

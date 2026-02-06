@@ -1,3 +1,5 @@
+import './ajax.js';
+
 const AUTHORIZE = "https://accounts.spotify.com/authorize"
 const TOKEN = "https://accounts.spotify.com/api/token";
 const PLAYER = "https://api.spotify.com/v1/me/player";
@@ -543,3 +545,6 @@ setInterval(fetchWeatherData, 1000*60*30);
 //setInterval(handleMusic, 1000);
 
 setInterval(handleSearch, 400);
+
+
+export { fetchWeatherData }
