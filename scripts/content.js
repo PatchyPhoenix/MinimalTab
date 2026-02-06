@@ -1,3 +1,5 @@
+// deprecated
+/*
 const urlParams = new URLSearchParams(window.location.search);
 
 const code = urlParams.get("code");
@@ -13,12 +15,14 @@ if(window.location.href.startsWith("https://minmaltab.web.app/connect.html")){
         document.getElementById('connectedStatus').innerHTML = "Failed to Connect";
         document.getElementById('closeTab').innerHTML = "You may close this tab <br><br>";
     }
-    else
+    else {
         chrome.storage.local.get(["widgets"]).then((result) => { 
             result = result['widgets'];
             result['music']['spotify']['code'] = code
             chrome.storage.local.set({"widgets":result});
         });
+    }
+
         fetchAccessToken(code)
         chrome.storage.local.get(["widgets"]).then((result) => { 
             result = result['widgets'];
@@ -70,4 +74,4 @@ function handleAuthorizationResponse(){
     }
     else
         console.log(this.responseText);
-}
+}*/

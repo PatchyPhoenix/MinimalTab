@@ -34,9 +34,6 @@ chrome.storage.local.get(["widgets"]).then((result) => {
         if(result['widgets']['weather']['location'] != undefined || result['widgets']['weather']['location'] != null)
             locationTextBox.value = result['widgets']['weather']['location']
     }
-    if(result['widgets']['music']['spotify']['code'] != null) {
-        document.getElementById("connectMusic").innerText = "Connected to Spotify"
-    }
 });
 
 weatherStatus.addEventListener('change', function(e) {
@@ -91,8 +88,8 @@ document.getElementById("applyBtW").addEventListener('click', function() {
 })
 
 
-// music
-
+// music - deprecated
+/*
 var clientId = "f47c125dda624fec811445f4dc9dc8d8"
 var clientSecret = "621526bd71e840eea1ff55fe724f9c09"
 var redirect = "https://minmaltab.web.app/connect.html"
@@ -104,7 +101,7 @@ function requestAuth() {
 }
 
 document.getElementById('connectMusic').addEventListener('click', function() { requestAuth(); });
-
+*/
 
 document.getElementById('applyBtSb').addEventListener('click', function(e) {
     chrome.storage.local.get(['widgets']).then((response) => {

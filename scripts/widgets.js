@@ -245,7 +245,8 @@ async function fetchWeatherData() {
 }
 
 
-// music
+// music - deprecated
+/*
 async function handleMusic() {
     chrome.storage.local.get(["widgets"]).then((result) => { 
         result = result['widgets']['music'];
@@ -414,7 +415,7 @@ async function refreshAccessToken(){
         callAuthorizationApi(body);
     })
 }
-
+*/
 
 // widgetPanel
 function handleWidgetPanel() {
@@ -535,7 +536,7 @@ function handleHomeWidget() {
 
 
 fetchWeatherData()
-setInterval(fetchWeatherData, 1000);
+setInterval(fetchWeatherData, 1000*60*30);
 
 // deprecated -> chrome only
 //handleMusic()
