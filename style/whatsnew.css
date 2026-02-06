@@ -41,18 +41,20 @@
 }
 
 html{
-    background-color: #0F0F0F;
+    background-color: #000;
 }
 
 body{
     background-attachment: fixed;
-    background-color: #0F0F0F;
+    opacity: 0;
+    background-color: #000;
     color: #BEBEBE;
     align-items: center;
     user-select: none;
     font-family: "FiraLight";
     overflow-x: hidden;
-    padding: 2vw;
+    margin: 2vw;
+    transition: all .2s;
 }
 
 .title{
