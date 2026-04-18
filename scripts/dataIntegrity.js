@@ -19,7 +19,7 @@ async function handleMissingData() {
 
     chrome.storage.local.get(["background"]).then((result) => { 
         if (result.background == null || result.background == undefined) { 
-            chrome.storage.local.set({"background": {"type":'colour',"src":"#0F0F0F"}}); 
+            chrome.storage.local.set({"background": {"type":'colour',"src":"#090909"}}); 
             console.log("filling in the gaps - bg") 
         } 
     })
@@ -33,11 +33,11 @@ async function handleMissingData() {
     
     chrome.storage.local.get(["widgets"]).then((result) => { 
         if (result.widgets == null || result.widgets == undefined) { 
-            chrome.storage.local.set({"widgets": {'weather':{'status':true,"location":null, 'condition':null, "lastUpdatedWeather":0}, "search":{"status":false, 'searchEngine':"google"}}});
+            chrome.storage.local.set({"widgets": {'weather':{'status':false,"location":null, 'condition':null, "lastUpdatedWeather":0}, "search":{"status":false, 'searchEngine':"google"}}});
             console.log("filling in the gaps - w") 
         } 
         else if(result.widgets.weather == null || result.widgets.weather == undefined) {
-            result.widgets.weather = {'status':true,"location":null, 'condition':null, "lastUpdatedWeather":0}
+            result.widgets.weather = {'status':false,"location":null, 'condition':null, "lastUpdatedWeather":0}
             chrome.storage.local.set({"widgets": result.widgets});
             console.log("filling in the gaps - w") 
         }
@@ -52,7 +52,7 @@ async function handleMissingData() {
             console.log("filling in the gaps - w")
         }
         else if(result.widgets.panel == null || result.widgets.panel == undefined) {
-            result.widgets.panel = true;
+            result.widgets.panel = false;
             chrome.storage.local.set({"widgets": result.widgets});
             console.log("filling in the gaps - w")
         }

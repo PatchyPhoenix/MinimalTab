@@ -12,5 +12,5 @@ async function reset () {
         "alwaysOnSettingsButton":true,
         "shortcuts":{"drawer":true,"links":[]},
         "background":{"type":"colour","src":"#090909"},
-        "widgets":{"weather":{"condition":null, "lastUpdatedWeather":0,"location":null,"status":true}, "search":{'status':false,"searchEngine":"google"}}});
+        "widgets":{"weather":{"condition":null, "lastUpdatedWeather":0,"location":null,"status":false}, "search":{'status':false,"searchEngine":"google"}}});
 }

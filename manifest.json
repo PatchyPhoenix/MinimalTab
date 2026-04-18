@@ -1,6 +1,6 @@
 {
     "name": "MinimalTab",
-    "version": "1.11.0",
+    "version": "1.11.1",
     "description": "A stunning minimalistic custom new tab",
     "manifest_version": 3,
     "author": "patchyphoenix",
@@ -15,8 +15,7 @@
         "sidePanel",
         "tabs",
         "favicon",
-        "webRequest",
-        "<all_urls>"
+        "webRequest"
     ],
     "web_accessible_resources":[{
         "resources":["_favicon/*"],
@@ -39,7 +38,7 @@
         "64": "resources/logo64.png",
         "128": "resources/logo128.png"
     },
-    "version_name": "1.11",
+    "version_name": "1.11.1dev",
     "background": {
         "service_worker": "scripts/service-worker.js"
     },    
