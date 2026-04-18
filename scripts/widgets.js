@@ -50,8 +50,9 @@ function onMouseUpdate(e) {
 // search bar
 function handleSearch() {
     chrome.storage.local.get(['widgets']).then((response) => {
-        response = response.widgets['search']
-        if(response['status']) {
+        response = response.widgets
+
+        if(response['search']['status']) {
             document.getElementById('searchBar').style.opacity = 1
             document.getElementById('searchBar').style.display = "inline"
         }
@@ -87,9 +88,9 @@ function getIcon(conditionCode) {
         case 1006: return "cloud"; 
         case 1009: return "cloud"; 
         case 1030: return "mist"; 
-        case 1063: return "partly_cloudy day"; 
-        case 1066: return "partly_cloudy day"; 
-        case 1069: return "partly_cloudy day"; 
+        case 1063: return "partly_cloudy_day"; 
+        case 1066: return "partly_cloudy_day"; 
+        case 1069: return "partly_cloudy_day"; 
         case 1072: return "cloud"; 
         case 1087: return "thunderstorm"; 
         case 1114: return "cloudy_snowing"; 
@@ -139,7 +140,9 @@ async function fetchWeatherData() {
     var dat = new Date();
     chrome.storage.local.get(['widgets']).then((response) => {
         response = response.widgets
-        if(response.weather.condition == {} || response.weather.condition == null || response.weather.condition == undefined) {
+
+        if (response.weather.status) {
+            if(response.weather.condition == {} || response.weather.condition == null || response.weather.condition == undefined) {
             if(online) {
                 if(response.weather.location != null || response.weather.location != undefined) {
                     var url='https://api.weatherapi.com/v1/current.json?key=2907bc91fdf24cf583d115833230612&q='+ response.location +'&aqi=no';
@@ -211,7 +214,7 @@ async function fetchWeatherData() {
                 }
             }
         }
-        if(response.weather.status) {
+        
             try {
                 var stats = document.getElementById("weatherStats")
                 var icon = document.createElement("span")
@@ -423,6 +426,10 @@ async function refreshAccessToken(){
 function handleWidgetPanel() {
     chrome.storage.local.get(['widgets']).then((response) => {
         response = response['widgets']
+
+        if (!response['widgetPanel'] && !response['weather']['status'])
+            document.getElementById("weatherStats").style.display = "none";
+
         if(document.getElementById("widgetsPanel").style.transform == "translateX(0%)") {
                 document.getElementById("widgetsPanel").style.transform = "translatex(-100%)";
                 document.getElementById("weatherStats").style.transform = "translatex(0%)";
@@ -436,7 +443,7 @@ function handleWidgetPanel() {
                 document.getElementById("weatherStats").style.transform = "translatex(30vw)";
                 handleHomeWidget()
                 if(homeHandler == null)
-                    homeHandler = setInterval(handleHomeWidget, 1000)
+                    homeHandler = setInterval(handleHomeWidget, 10000)
             }
         }
     })
@@ -528,17 +535,29 @@ function handleHomeWidget() {
             boxDiv.appendChild(document.createElement("br"))
             boxDiv.appendChild(document.createElement("br"))
         }
-        
-        // quotes - deprecated
     });
 }
 
 
-//quotes - deprecated
+function handleWidgetVisibility() {
+    chrome.storage.local.get(['widgets']).then((response) => {
+        response = response['widgets']
+        if (!response['panel'] && !response['weather']['status'])
+            document.getElementById("weatherStats").style.display = "none";
+        else {
+            if (window.getComputedStyle(document.getElementById("weatherStats")).display == "none")
+                fetchWeatherData()
+            document.getElementById("weatherStats").style.display = "block";
+        }
+    });
+}
 
 
 fetchWeatherData()
+handleWidgetVisibility()
 setInterval(fetchWeatherData, 1000*60*30);
+setInterval(handleWidgetVisibility, 1000);
+
 
 // deprecated -> chrome only
 //handleMusic()
