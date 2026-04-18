@@ -1,25 +1,10 @@
-import './ajax.js';
 
-const AUTHORIZE = "https://accounts.spotify.com/authorize"
-const TOKEN = "https://accounts.spotify.com/api/token";
-const PLAYER = "https://api.spotify.com/v1/me/player";
-const CURRENTLYPLAYING = "https://api.spotify.com/v1/me/player/currently-playing";
-
-var clientId = "f47c125dda624fec811445f4dc9dc8d8"
-var clientSecret = "621526bd71e840eea1ff55fe724f9c09"
-var redirect = "https://minmaltab.web.app/connect.html"
-
-var currentTrack = null;
-var currentArtist = null;
 
 var homeHandler = null;
-var newsHandler = null;
 
 var online = window.navigator.onLine;
 
 var mouseOverWeather = false;
-
-var panel = false;
 
 window.addEventListener("online", function() {
     online = true;
@@ -250,177 +235,6 @@ async function fetchWeatherData() {
 }
 
 
-// music - deprecated
-/*
-async function handleMusic() {
-    chrome.storage.local.get(["widgets"]).then((result) => { 
-        result = result['widgets']['music'];
-        if(result['spotify']['accessToken'] != null && result['spotify']['refreshToken'] != null)
-            currentlyPlaying()
-    });    
-}
-
-
-async function callAuthorizationApi(body){
-    console.log('callauthrespapi')
-    let xhr = new XMLHttpRequest();
-    xhr.open("POST", TOKEN, true);
-    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-    xhr.setRequestHeader('Authorization', 'Basic ' + btoa(clientId + ":" + clientSecret));
-    xhr.send(body);
-    xhr.onload = handleAuthorizationResponse;
-}
-
-
-async function handleAuthorizationResponse(){
-    if ( this.status == 200 ){
-        var data = JSON.parse(this.responseText);
-        if ( data.access_token != undefined ){
-            access_token = data.access_token;
-            chrome.storage.local.get(['widgets']).then((request) => {
-                request = request['widgets']
-                request['music']['spotify']['accessToken'] = access_token
-                chrome.storage.local.set({"widgets":request})
-            })
-        }
-    }
-    else
-        console.log(this.responseText);
-}
-
-
-async function callApi(method, url, body, callback){
-    chrome.storage.local.get(['widgets']).then((response) => {
-        response = response['widgets']['music']['spotify']
-        let xhr = new XMLHttpRequest();
-        xhr.open(method, url, true);
-        xhr.setRequestHeader('Content-Type', 'application/json');
-        xhr.setRequestHeader('Authorization', 'Bearer ' + response['accessToken']);
-        xhr.send(body);
-        xhr.onload = callback;
-    })  
-}
-
-
-async function currentlyPlaying(){
-    await callApi( "GET", PLAYER + "?market=US", null, handleCurrentlyPlayingResponse );
-}
-
-
-function hexToRgb(hex) {
-    var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-    return result ? {
-      r: parseInt(result[1], 16),
-      g: parseInt(result[2], 16),
-      b: parseInt(result[3], 16)
-    } : null;
-}
-
-function rgbToHex(r, g, b) {
-    return "#" + (1 << 24 | r << 16 | g << 8 | b).toString(16).slice(1);
-}
-
-async function handleCurrentlyPlayingResponse(){
-    if ( this.status == 200 ){
-        var data = JSON.parse(this.responseText);
-        if ( data.item != null ){
-            
-            if(data.item.name != currentTrack) {
-                var delay = 0;
-                var e = currentTrack;
-                var s = "";
-                if(currentTrack != null) {
-                    delay = currentTrack.length * 75
-                    for(var x = e.length; x>-1; x--) {
-                        var v = e.slice(0, x);
-                        setTimeout((s) => {
-                            document.getElementById("song").innerText = s;
-                        }, 75*((e.length - x)+1), v)
-                    }
-                }
-                setTimeout(() => {
-                    s = "";
-                    for(var x = 0; x<data.item.name.length; x++) {
-                        s += data.item.name[x]; 
-                        setTimeout((s) => {
-                            document.getElementById("song").innerText = s;
-                            clearTimeout(this)
-                    }, 75*(x+1), s)
-                    }
-                }, delay);
-            
-            if(data.item.artists[0].name != currentArtist) {
-                var delayA = 0;
-                var eA = currentArtist;
-                var sA = "";
-
-                if(currentArtist != null) {
-                    delayA = currentArtist.length * 75
-                    for(var y = eA.length; y>-1; y--) {
-                        var vA = eA.slice(0, y);
-                        setTimeout((s) => {
-                            document.getElementById("artist").innerText = s;
-                        }, 75*((eA.length - y)+1), vA)
-                    }
-                }
-
-                sA = "";
-                setTimeout(() => {
-                    for(var y = 0; y<data.item.artists[0].name.length; y++) {
-                        sA += data.item.artists[0].name[y]; 
-                        setTimeout((s) => {
-                            document.getElementById("artist").innerText = s;
-                        }, 75*(y+1), sA)
-                    }
-                }, delayA);
-            }
-        }
-            currentTrack = data.item.name
-            currentArtist = data.item.artists[0].name
-        }
-
-        if(data['is_playing']) {
-            chrome.storage.local.get(["colours"]).then((result) => {
-                var root = document.querySelector(':root');
-                var p = result.colours['primary']
-                var s = result.colours['secondary']
-                if(p == s) {
-                    if((hexToRgb(p)['r'] > 220) && (hexToRgb(p)['g'] > 220) && (hexToRgb(p)['b'] > 220)) {
-                        p = rgbToHex(hexToRgb(p)['r'] - 35, hexToRgb(p)['g'] - 35, hexToRgb(p)['b'] - 35)
-                    }
-                    else {
-                        s = rgbToHex(hexToRgb(p)['r'] + 35, hexToRgb(p)['g'] + 35, hexToRgb(p)['b'] + 35)
-                    }
-                }
-                root.style.setProperty('--mPrimaryClr', p)
-                root.style.setProperty('--mSecondaryClr', s)
-            });
-            document.getElementById('musicStatus').style.setProperty('animation', "gradient 2s ease infinite")            
-        }
-        else {
-            document.getElementById('musicStatus').style.setProperty('animation', "none")
-        }
-    }
-    else if ( this.status == 204 ) {}
-
-    else if ( this.status == 401 )
-        await refreshAccessToken()
-    
-    else
-        console.log(this.responseText);
-}
-
-
-async function refreshAccessToken(){
-    chrome.storage.local.get(['widgets']).then((response) => {
-        response = response['widgets']['music']['spotify']
-        let body = "grant_type=refresh_token";
-        body += "&refresh_token=" + response['refreshToken'];
-        body += "&client_id=" + clientId;
-        callAuthorizationApi(body);
-    })
-}
-*/
 
 // widgetPanel
 function handleWidgetPanel() {
@@ -431,7 +245,7 @@ function handleWidgetPanel() {
             document.getElementById("weatherStats").style.display = "none";
 
         if(document.getElementById("widgetsPanel").style.transform == "translateX(0%)") {
-                document.getElementById("widgetsPanel").style.transform = "translatex(-100%)";
+                document.getElementById("widgetsPanel").style.transform = "translatex(-105%)";
                 document.getElementById("weatherStats").style.transform = "translatex(0%)";
                 if(homeHandler != null)
                     clearInterval(homeHandler)
@@ -489,10 +303,10 @@ function handleHomeWidget() {
                 humidity.setAttribute('class',"weatherInfoBox")
 
 
-                wind.innerHTML = "<span class='material-symbols-outlined'>air</span><br><b>" + response.weather.condition.current.wind_kph + " km/h</b><br> <u>Wind</u>"
-                precip.innerHTML = "<span class='material-symbols-outlined'>beach_access</span><br><b>" + response.weather.condition.current.precip_mm + " mm</b><br> <u>Precipitation</u>"
-                pressure.innerHTML = "<span class='material-symbols-outlined'>compress</span><br><b>" + response.weather.condition.current.pressure_mb + " mb</b><br> <u>Pressure</u>"
-                humidity.innerHTML = "<span class='material-symbols-outlined'>water_drop</span><br><b>" + response.weather.condition.current.humidity + "%</b><br> <u>Humidity</u>"
+                wind.innerHTML = "<span class='material-symbols-outlined'>air</span><br><b>" + response.weather.condition.current.wind_kph + " km/h</b><br> Wind"
+                precip.innerHTML = "<span class='material-symbols-outlined'>beach_access</span><br><b>" + response.weather.condition.current.precip_mm + " mm</b><br> Precipitation"
+                pressure.innerHTML = "<span class='material-symbols-outlined'>compress</span><br><b>" + response.weather.condition.current.pressure_mb + " mb</b><br> Pressure"
+                humidity.innerHTML = "<span class='material-symbols-outlined'>water_drop</span><br><b>" + response.weather.condition.current.humidity + "%</b><br> Humidity"
                 text.innerHTML = response.weather.condition.current.temp_c + "°C | " + response.weather.condition.current.temp_f + "°F"
                 city.innerHTML = "<b>" + response.weather.condition.location.name + "</b>"
                 city.setAttribute("style","font-size:1.5vw;")

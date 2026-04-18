@@ -115,10 +115,10 @@ function addShortcutsToBox() {
 async function handleSitesBar() {
     chrome.storage.local.get(["shortcuts"]).then((result) => { 
         if (result.shortcuts['drawer']) { 
-            if((document.getElementById("widgetsPanel").style.transform == "translateX(0%)")){
+            if((document.getElementById("widgetsPanel").style.transform == "translateX(-12.5%)")){
                 if ((y >= (window.innerHeight * 60 / 100) && (x >= (window.innerWidth * 30 / 100)))) {
                     flag = 1;
-                    document.getElementById("box").style.transform = "translatey(0%)";
+                    document.getElementById("box").style.transform = "translatey(-12.5%)";
                     if(flagS != 1 && boxPos >= 1){
                         addShortcutsToBox();
                         flagS = 1;
@@ -134,7 +134,7 @@ async function handleSitesBar() {
             else {
                 if (y >= (window.innerHeight * 60 / 100)) {
                     flag = 1;
-                    document.getElementById("box").style.transform = "translatey(0%)";
+                    document.getElementById("box").style.transform = "translatey(-12.5%)";
                     if(flagS != 1 && boxPos >= 1){
                         addShortcutsToBox();
                         flagS = 1;

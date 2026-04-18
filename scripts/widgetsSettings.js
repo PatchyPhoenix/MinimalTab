@@ -205,21 +205,6 @@ document.getElementById("applyBtW").addEventListener('click', function() {
 })
 
 
-// music - deprecated
-/*
-var clientId = "f47c125dda624fec811445f4dc9dc8d8"
-var clientSecret = "621526bd71e840eea1ff55fe724f9c09"
-var redirect = "https://minmaltab.web.app/connect.html"
-
-function requestAuth() {
-    let url = "https://accounts.spotify.com/authorize"
-    url += "?client_id="+clientId+"&response_type=code&redirect_uri="+encodeURI(redirect)+"&show_dialog=true&scope=user-read-playback-state user-modify-playback-state user-read-currently-playing";
-    window.open(url)
-}
-
-document.getElementById('connectMusic').addEventListener('click', function() { requestAuth(); });
-*/
-
 document.getElementById('applyBtSb').addEventListener('click', function(e) {
     chrome.storage.local.get(['widgets']).then((response) => {
         response = response.widgets;

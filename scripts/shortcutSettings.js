@@ -44,7 +44,7 @@ chrome.storage.local.get(["shortcuts"]).then((result) => {
         shortcutItemName.setAttribute("id","shortcutItemName"+i);
         shortcutItemName.setAttribute("placeholder","Name");
         shortcutItemName.setAttribute("class","shortcutItem");
-        shortcutItemName.setAttribute("style","margin-bottom: 0; border: 1px solid #696969; border-bottom: 0px; border-bottom: 1px solid rgba(255, 255, 255, 0.21); border-radius:10px 10px 0 0;display:inline-block;width:40vw;");
+        shortcutItemName.setAttribute("style","margin-bottom: 0; border: 1px solid #696969; border-bottom: 0px; border-bottom: 1px solid rgba(255, 255, 255, 0.21); border-radius:10px 10px 0 0;display:inline-block; width:50vw; margin-left: 5vw;");
         shortcutItemName.value = shortcuts[i]['name'];
 
         let shortcutItem = document.createElement("input");
@@ -52,7 +52,7 @@ chrome.storage.local.get(["shortcuts"]).then((result) => {
         shortcutItem.setAttribute("id","shortcutItem"+i);
         shortcutItem.setAttribute("placeholder","URL");
         shortcutItem.setAttribute("class","shortcutItem");
-        shortcutItem.setAttribute("style","margin-top: 0; border: 1px solid #696969; border-top: 0px; border-radius:0 0 10px 10px;display:inline-block;width:40vw;");
+        shortcutItem.setAttribute("style","margin-top: 0; border: 1px solid #696969; border-top: 0px; border-radius:0 0 10px 10px;display:inline-block;width:50vw; margin-left: 5vw");
         shortcutItem.value = shortcuts[i]['url'];
 
         shortcut.appendChild(shortcutItemName);
@@ -64,6 +64,7 @@ chrome.storage.local.get(["shortcuts"]).then((result) => {
         icon.innerHTML = "delete";
         
         deleteButton.setAttribute("class","iconButton");
+        deleteButton.setAttribute("style","margin-left: 18vw;");
         deleteButton.setAttribute("id","shortcut"+i);
         deleteButton.appendChild(icon);
         
