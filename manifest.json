@@ -26,7 +26,7 @@
     "content_scripts": [
         {
             "matches": ["https://minmaltab.web.app/*"],
-            "js": ["scripts/content.js"]
+            "js": ["scripts/ajax.js"]
         }
     ],
     "side_panel":{
