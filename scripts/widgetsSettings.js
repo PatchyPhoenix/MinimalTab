@@ -1,3 +1,5 @@
+weatherApiKey = "[INSERT WEATHER API KEY HERE]"
+
 setTimeout(()=>{document.body.style.setProperty('opacity','100%');
 document.body.style.setProperty('background-color','#090909');}, 100)
 
@@ -59,7 +61,7 @@ autoBt.addEventListener('click', function(e) {
                 "Access-Control-Allow-Methods": "OPTIONS, GET, POST",
                 "Access-Control-Allow-Headers": "Content-Type, Depth, User-Agent, X-File-Size, X-Requested-With, If-Modified-Since, X-File-Name, Cache-Control"}
             };
-            var url='https://api.weatherapi.com/v1/current.json?key=2907bc91fdf24cf583d115833230612&q='+ data.ip +'&aqi=no';
+            var url='https://api.weatherapi.com/v1/current.json?key='+weatherApiKey+'&q='+ data.ip +'&aqi=no';
             fetch(url, params).then((request) => {
                 request.json().then((request) => { 
                     response['condition'] = request
@@ -85,7 +87,7 @@ async function fetchWeatherData() {
         if(response.weather.condition == {} || response.weather.condition == null || response.weather.condition == undefined) {
             if(online) {
                 if(response.weather.location != null || response.weather.location != undefined) {
-                    var url='https://api.weatherapi.com/v1/current.json?key=2907bc91fdf24cf583d115833230612&q='+ response.location +'&aqi=no';
+                    var url='https://api.weatherapi.com/v1/current.json?key='+weatherApiKey+'&q='+ response.location +'&aqi=no';
                     fetch(url, params).then((request) => {
                         request.json().then((request) => { 
                             response.weather['condition'] = request
@@ -100,7 +102,7 @@ async function fetchWeatherData() {
                         pair = pair.split('=');
                         return obj[pair[0]] = pair[1], obj;
                         }, {});
-                        var url='https://api.weatherapi.com/v1/current.json?key=2907bc91fdf24cf583d115833230612&q='+ data.ip +'&aqi=no';
+                        var url='https://api.weatherapi.com/v1/current.json?key='+weatherApiKey+'&q='+ data.ip +'&aqi=no';
                         fetch(url, params).then((request) => {
                             request.json().then((request) => { 
                                 response.weather['condition'] = request
@@ -120,7 +122,7 @@ async function fetchWeatherData() {
             if(((dat.getTime() - response.weather.lastUpdatedWeather) >= 3600000 || response.weather.lastUpdatedWeather == null || response.weather.lastUpdatedWeather == undefined) || ((response.weather.location != response.weather.condition.location.name) )) {
                 if(online) {
                     if(response.weather.location != null || response.weather.location != undefined) {
-                        var url='https://api.weatherapi.com/v1/current.json?key=2907bc91fdf24cf583d115833230612&q='+ response.weather.location +'&aqi=no';
+                        var url='https://api.weatherapi.com/v1/current.json?key='+weatherApiKey+'&q='+ response.weather.location +'&aqi=no';
                         fetch(url, params).then((request) => {
                             request.json().then((request) => { 
                                 response.weather['condition'] = request
@@ -136,7 +138,7 @@ async function fetchWeatherData() {
                             pair = pair.split('=');
                             return obj[pair[0]] = pair[1], obj;
                             }, {});
-                            var url='https://api.weatherapi.com/v1/current.json?key=2907bc91fdf24cf583d115833230612&q='+ data.ip +'&aqi=no';
+                            var url='https://api.weatherapi.com/v1/current.json?key='+weatherApiKey+'&q='+ data.ip +'&aqi=no';
                             fetch(url, params).then((request) => {
                                 request.json().then((request) => { 
                                     response.weather['condition'] = request

@@ -1,4 +1,4 @@
-
+var weatherApiKey = "[INSERT WEATHER API KEY HERE]"
 
 var homeHandler = null;
 
@@ -130,7 +130,7 @@ async function fetchWeatherData() {
             if(response.weather.condition == {} || response.weather.condition == null || response.weather.condition == undefined) {
             if(online) {
                 if(response.weather.location != null || response.weather.location != undefined) {
-                    var url='https://api.weatherapi.com/v1/current.json?key=2907bc91fdf24cf583d115833230612&q='+ response.location +'&aqi=no';
+                    var url='https://api.weatherapi.com/v1/current.json?key='+weatherApiKey+'&q='+ response.location +'&aqi=no';
                     fetch(url, params).then((request) => {
                         request.json().then((request) => { 
                             response.weather['condition'] = request
@@ -145,7 +145,7 @@ async function fetchWeatherData() {
                         pair = pair.split('=');
                         return obj[pair[0]] = pair[1], obj;
                         }, {});
-                        var url='https://api.weatherapi.com/v1/current.json?key=2907bc91fdf24cf583d115833230612&q='+ data.ip +'&aqi=no';
+                        var url='https://api.weatherapi.com/v1/current.json?key='+weatherApiKey+'&q='+ data.ip +'&aqi=no';
                         fetch(url, params).then((request) => {
                             request.json().then((request) => { 
                                 response.weather['condition'] = request
@@ -165,7 +165,7 @@ async function fetchWeatherData() {
             if(((dat.getTime() - response.weather.lastUpdatedWeather) >= 3600000 || response.weather.lastUpdatedWeather == null || response.weather.lastUpdatedWeather == undefined) || ((response.weather.location != response.weather.condition.location.name) )) {
                 if(online) {
                     if(response.weather.location != null || response.weather.location != undefined) {
-                        var url='https://api.weatherapi.com/v1/current.json?key=2907bc91fdf24cf583d115833230612&q='+ response.weather.location +'&aqi=no';
+                        var url='https://api.weatherapi.com/v1/current.json?key='+weatherApiKey+'&q='+ response.weather.location +'&aqi=no';
                         fetch(url, params).then((request) => {
                             request.json().then((request) => { 
                                 response.weather['condition'] = request
@@ -181,7 +181,7 @@ async function fetchWeatherData() {
                             pair = pair.split('=');
                             return obj[pair[0]] = pair[1], obj;
                             }, {});
-                            var url='https://api.weatherapi.com/v1/current.json?key=2907bc91fdf24cf583d115833230612&q='+ data.ip +'&aqi=no';
+                            var url='https://api.weatherapi.com/v1/current.json?key='+weatherApiKey+'&q='+ data.ip +'&aqi=no';
                             fetch(url, params).then((request) => {
                                 request.json().then((request) => { 
                                     response.weather['condition'] = request
@@ -356,7 +356,7 @@ function handleHomeWidget() {
 function handleWidgetVisibility() {
     chrome.storage.local.get(['widgets']).then((response) => {
         response = response['widgets']
-        if (!response['panel'] && !response['weather']['status'])
+        if (!response['weather']['status'])
             document.getElementById("weatherStats").style.display = "none";
         else {
             if (window.getComputedStyle(document.getElementById("weatherStats")).display == "none")

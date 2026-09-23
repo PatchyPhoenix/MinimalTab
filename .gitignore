@@ -5,3 +5,5 @@ dataStructure.json
 resources/preview/
 scripts/content.js
 .gitignore
+oldterms.md
+CHANGES.md
